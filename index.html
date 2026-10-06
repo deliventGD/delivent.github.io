@@ -40,8 +40,7 @@ section.s{padding:74px 0 10px}
 .ev{position:relative;padding-left:44px}
 .ev:before{content:"";position:absolute;left:3px;top:7px;width:20px;height:20px;background:var(--bg);border:4px solid var(--red);border-radius:50%}
 .ev h3{font-size:22px}.ev .meta{color:var(--deep);font-weight:500;margin:2px 0 6px}
-.ev ul{margin:6px 0 0;padding-left:20px}.ev p{margin:6px 0;max-width:60ch}.ev .btn{display:inline-block;margin-top:14px;padding:5px 14px;font-size:15px}.ev ul{clear:both}
-@media(min-width:860px){
+.ev ul{margin:6px 0 0;padding-left:0;list-style-position:inside}@media(min-width:860px){
 .tl:before{left:50%;margin-left:-2px}
 .ev{width:50%;padding:0 40px 0 0;text-align:left}.ev ul{text-align:left}
 .ev:before{left:auto;right:-12px}
@@ -115,7 +114,7 @@ const UI={
  job:["Systems designer & producer","Системный дизайнер & продюсер"],
  about:[["I specialize in gameplay,       production and systems. I enjoy working in a game engine, doing technically complex and careful work that demands high precision.","I keep documentation, collect and analyze data, and write task specifications for every department."],
         ["Специализируюсь на геймплее, продюсировании и системах. Мне нравится выполнять в игровом движке технически сложную, кропотливую работу, требующую высокой точности.","Веду документацию, собираю и анализирую данные, а также составляю технические задания для всех отделов."]],
- soon:["Coming soon","Скоро будет"],stats:[["Concepts","Концептов",0],["Builds","Билдов",5],["Game jams","Гейм джемов",2]],kick:["game designer • portfolio","гейм дизайнер • портфолио"],cta:["Get in touch","Свяжитесь со мной"],cvEn:["Résumé (EN)","Резюме (EN)"],cvRu:["Résumé (RU)","Резюме (RU)"],
+ soon:["Coming soon","Скоро будет"],stats:[["Concepts","Концептов",0],["Builds","Билдов",5],["Game jams","Гейм джемов",2]],kick:["Game designer • portfolio","Гейм дизайнер • портфолио"],cta:["Get in touch","Свяжитесь со мной"],cvEn:["Resume (EN)","Резюме (EN)"],cvRu:["Resume (RU)","Резюме (RU)"],
  photo:["Your photo here","Здесь будет ваше фото"],
  h:{exp:["Experience","Опыт"],port:["Portfolio","Портфолио"],skills:["Skills","Навыки"],edu:["Education","Образование"],contacts:["Contacts","Контакты"]},
  back:["← Back to portfolio","← Назад к портфолио"],
@@ -164,11 +163,10 @@ function more(){const ar='<svg viewBox="0 0 24 24" fill="none" stroke="currentCo
 function home(){
  return `<section class="hero" id="about"><div class="wrap">
  <div class="stats">${UI.stats.map(x=>`<div><b>${x[2]}</b><span>${esc(L(x))}</span></div>`).join("")}</div>
- <div><div class="kick">${esc(L(UI.kick))}</div><h1>delivent</h1><div class="by">Anna Kalmykova • <span class="hl"><button data-l="en">EN</button><button data-l="ru">RU</button></span></div>
+ <div><div class="kick">${esc(L(UI.kick))}</div><h1>delivent</h1><div class="by">Anna Kalmykova <span class="hl"><button data-l="en">EN</button><button data-l="ru">RU</button></span></div>
  ${L(UI.about).map(p=>`<p>${esc(p)}</p>`).join("")}
  <div class="btns"><a class="btn" href="#/contacts">${esc(L(UI.cta))}</a></div></div>
- <div class="side"><div class="photo">${esc(L(UI.photo))}</div><div class="btns"><a class="btn" href="#">${esc(L(UI.cvEn))}</a><a class="btn" href="#">${esc(L(UI.cvRu))}</a></div></div></div></section>
- <div class="wrap">
+<div class="side"><div class="photo"><img src="photo.jpg" alt="Anna"></div> <div class="wrap">
  <section class="s" id="exp"><h2>${esc(L(UI.h.exp))}</h2><div class="tl">${EXP.map(e=>`<div class="ev"><h3>${esc(L(e.t))}</h3><div class="meta">${esc(L(e.m))}</div>${e.p?`<p>${esc(L(e.p))}</p>`:""}${e.l?ul(L(e.l)):""}${e.b?`<a class="btn" href="${e.b[1]}">${esc(L(UI[e.b[0]]))}</a>`:""}</div>`).join("")}</div></section>
  <section class="s" id="port"><h2>${esc(L(UI.h.port))}</h2><div class="grid">${[0,1,2,3,4,5].map(i=>{const g=GAMES[i];return g?`<a class="tile t${i+1}" href="#/game/${g.id}"><div class="sh" style="background-color:${g.c}${g.cover?`;background-image:url(${g.cover})`:""}"><b>${esc(g.n)}</b><small>${g.y}</small></div></a>`:`<div class="tile soon t${i+1}"><div class="sh"><b>${esc(L(UI.soon))}</b></div></div>`}).join("")}</div></section>
  <section class="s" id="skills"><h2>${esc(L(UI.h.skills))}</h2><div class="sk">${UI.skillsT.map((t,i)=>`<div><h3>${esc(L(t))}</h3>${ul(L(UI.skillsL[i]))}</div>`).join("")}</div></section>
