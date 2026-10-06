@@ -43,7 +43,7 @@ section.s{padding:74px 0 10px}
 .ev ul{margin:6px 0 0;padding-left:20px}.ev p{margin:6px 0;max-width:60ch}.ev .btn{display:inline-block;margin-top:14px;padding:5px 14px;font-size:15px}.ev ul{clear:both}
 @media(min-width:860px){
 .tl:before{left:50%;margin-left:-2px}
-.ev{width:50%;padding:0 40px 0 0;text-align:right}.ev ul{text-align:left}
+.ev{width:50%;padding:0 40px 0 0;text-align:left}.ev ul{text-align:left}
 .ev:before{left:auto;right:-12px}
 .ev:nth-child(even){margin-left:50%;padding:0 0 0 40px;text-align:left}
 .ev:nth-child(even):before{right:auto;left:-12px}
@@ -112,8 +112,8 @@ footer{margin-top:90px;padding:24px 0;background:var(--ink);color:var(--sand);fo
 const UI={
  nav:[["About","Обо мне","about"],["Experience","Опыт","exp"],["Portfolio","Портфолио","port"],["Skills","Навыки","skills"],["Contacts","Контакты","contacts"]],
  role:["Game designer · Portfolio","Гейм-дизайнер · Портфолио"],
- job:["Systems designer & producer","Системный дизайнер и продюсер"],
- about:[["I specialize in gameplay, production and systems. I enjoy working in a game engine, doing technically complex and careful work that demands high precision.","I keep documentation, collect and analyze data, and write technical specifications for every department."],
+ job:["Systems designer & producer","Системный дизайнер & продюсер"],
+ about:[["I specialize in gameplay,       production and systems. I enjoy working in a game engine, doing technically complex and careful work that demands high precision.","I keep documentation, collect and analyze data, and write task specifications for every department."],
         ["Специализируюсь на геймплее, продюсировании и системах. Мне нравится выполнять в игровом движке технически сложную, кропотливую работу, требующую высокой точности.","Веду документацию, собираю и анализирую данные, а также составляю технические задания для всех отделов."]],
  soon:["Coming soon","Скоро будет"],stats:[["Concepts","Концептов",0],["Builds","Билдов",5],["Game jams","Гейм джемов",2]],kick:["game designer • portfolio","гейм дизайнер • портфолио"],cta:["Get in touch","Свяжитесь со мной"],cvEn:["Résumé (EN)","Резюме (EN)"],cvRu:["Résumé (RU)","Резюме (RU)"],
  photo:["Your photo here","Здесь будет ваше фото"],
@@ -131,11 +131,11 @@ const UI={
  always:["Always in touch!","Всегда на связи!"],mail:["Email","Почта"],more:["More to explore:","Больше интересного тут:"],chan:["Telegram channel","Telegram-канал"],stud:["Student portfolio","Студенческое портфолио"]
 };
 const EXP=[ // title, meta, text/list, button(optional: [label-key, href])
- {t:["Game Design","Гейм-дизайн"],m:["Bachelor's · 2024 – present · HSE University","Бакалавриат · 2024 – настоящее время · НИУ ВШЭ"],p:["Profile: game design (video game production).","Профиль: гейм-дизайн (продюсирование видеоигр)."]},
- {t:["Systems Game Design","Системный гейм-дизайн"],m:["Teaching assistant · 2025 – present","Ассистент преподавателя · 2025 – настоящее время"],l:[["Checking homework (concept documents)","Giving feedback: comments on the feature, additions, layout and structure of documents, writing quality","Checking coursework: preparing ready-made concept papers for existing student game docs"],["Проверка домашних заданий (концепт документов)","Обратная связь: комментарии по поводу фичекита, дополнения материала, верстки, структуры документации и грамотности","Проверка курсовых работ (готовые концепт документы для существующих игр студентов)"]]},
- {t:["Game Developer","Разработчик игр"],m:["Student projects · 2024 – present","Учебные проекты · 2024 – настоящее время"],p:["Producing, game design and project development.","Продюсирование, гейм-дизайн и разработка проектов."],b:["proj","#port"]},
- {t:["Siberian Game Jam – Dreamtide","Siberian Game Jam – Dreamtide"],m:["Team participation · 2025","Командное участие · 2025"],l:[["Level design","Sound design"],["Левел дизайн","Саунд дизайн"]],b:["game","#/game/dreamtide"]},
- {t:["Game Future Conference","Game Future Conference"],m:["Speaker · 2025","Спикер доклада · 2025"],p:["Wrote and presented a talk: “How much freedom can you give the player in adventure games, and how to implement it?”","Написание и презентация доклада: «Какую свободу можно предоставить игроку в адвенчур играх и как это реализовать?»"],b:["talk","#"]},
+ {t:["Game Design","Гейм-дизайн"],m:["Bachelor's (2024 – present) · HSE University","Бакалавриат (2024 – настоящее время) · НИУ ВШЭ"],p:["Profile: game design (video game production).","Профиль: гейм-дизайн (продюсирование видеоигр)."]},
+ {t:["Systems Game Design","Системный гейм-дизайн"],m:["Tutor assistant (2025 – 2026)","Ассистент преподавателя (2025 – 2026)"],l:[["Checking homework (concept documents).","Giving feedback: comments on the feature, additions, layout and structure of documents, writing quality.","Checking coursework: preparing ready-made concept papers for existing student game docs."],["Проверка домашних заданий (концепт документов).","Обратная связь: комментарии по поводу фичекита, дополнения материала, верстки, структуры документации и грамотности.","Проверка курсовых работ (готовые концепт документы для существующих игр студентов)."]]},
+ {t:["Game Developer","Разработчик игр"],m:["Student projects (2024 – present)","Учебные проекты (2024 – настоящее время)"],p:["Producing, game design and project development.","Продюсирование, гейм-дизайн и разработка игр."],b:["proj","#port"]},
+ {t:["Siberian Game Jam – Dreamtide","Siberian Game Jam – Dreamtide"],m:["Team participation (2025)","Командное участие (2025)"],l:[["Level design.","Sound design."],["Левел дизайн.","Саунд дизайн."]],b:["game","#/game/dreamtide"]},
+ {t:["Game Future Conference","Game Future Conference"],m:["Speaker (2025)","Спикер доклада (2025)"],p:["Wrote and presented a talk: “How much freedom can you give the player in adventure games, and how to implement it?”","Написание и презентация доклада: «Какую свободу можно предоставить игроку в адвенчур играх и как это реализовать?»"],b:["talk","#"]},
  {t:["MyIndie – Chakram","MyIndie – Chakram"],m:["Team participation · 2026","Командное участие · 2026"],l:[["Producing","Technical specification for departments","Development in Unreal Engine 5","Sound design"],["Продюсирование","Техническое задание для отделов","Разработка в Unreal Engine 5","Саунд дизайн"]],b:["game","#/game/chakram"]},
  {t:["Granicon – Seabed","Граникон – Seabed"],m:["Pair presentation at a tabletop designers' convention · 2026","Парное выступление на конвенте авторов настольных игр · 2026"],p:["Game design; built some components, designed cards, fish chips, rulebook and player reference. Also ran playtests and analysed playtesters' feedback.","Гейм-дизайн, реализация некоторых компонентов, дизайн карточек, фишек рыбок, верстка рулбука и памятки игроков. Также вела плейтесты и анализировала фидбек плейтестеров."],b:["game","#/game/seabed"]},
  {t:["Igray26","Играй26"],m:["Volunteer at a conference · 2026","Волонтёрство на конференции · 2026"],p:["Checked in attendees and handed out merch, moderated the talks hall (streamed on VK), helped with organizational tasks.","Следила за входящими участниками и выдавала мерч, модерировала зал с докладами (велась трансляция в ВК). Помогала в организационных моментах."]},
