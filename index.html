@@ -166,7 +166,7 @@ function home(){
  <div><div class="kick">${esc(L(UI.kick))}</div><h1>delivent</h1><div class="by">Anna Kalmykova <span class="hl"><button data-l="en">EN</button><button data-l="ru">RU</button></span></div>
  ${L(UI.about).map(p=>`<p>${esc(p)}</p>`).join("")}
  <div class="btns"><a class="btn" href="#/contacts">${esc(L(UI.cta))}</a></div></div>
-<div class="side"><div class="photo"><img src="photo.jpg" alt="Anna"></div> <div class="wrap">
+<div class="side"><div class="photo"><img src="photo.jfif" alt="Anna"></div> <div class="wrap">
  <section class="s" id="exp"><h2>${esc(L(UI.h.exp))}</h2><div class="tl">${EXP.map(e=>`<div class="ev"><h3>${esc(L(e.t))}</h3><div class="meta">${esc(L(e.m))}</div>${e.p?`<p>${esc(L(e.p))}</p>`:""}${e.l?ul(L(e.l)):""}${e.b?`<a class="btn" href="${e.b[1]}">${esc(L(UI[e.b[0]]))}</a>`:""}</div>`).join("")}</div></section>
  <section class="s" id="port"><h2>${esc(L(UI.h.port))}</h2><div class="grid">${[0,1,2,3,4,5].map(i=>{const g=GAMES[i];return g?`<a class="tile t${i+1}" href="#/game/${g.id}"><div class="sh" style="background-color:${g.c}${g.cover?`;background-image:url(${g.cover})`:""}"><b>${esc(g.n)}</b><small>${g.y}</small></div></a>`:`<div class="tile soon t${i+1}"><div class="sh"><b>${esc(L(UI.soon))}</b></div></div>`}).join("")}</div></section>
  <section class="s" id="skills"><h2>${esc(L(UI.h.skills))}</h2><div class="sk">${UI.skillsT.map((t,i)=>`<div><h3>${esc(L(t))}</h3>${ul(L(UI.skillsL[i]))}</div>`).join("")}</div></section>
