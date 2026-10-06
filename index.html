@@ -40,7 +40,7 @@ section.s{padding:74px 0 10px}
 .ev{position:relative;padding-left:44px}
 .ev:before{content:"";position:absolute;left:3px;top:7px;width:20px;height:20px;background:var(--bg);border:4px solid var(--red);border-radius:50%}
 .ev h3{font-size:22px}.ev .meta{color:var(--deep);font-weight:500;margin:2px 0 6px}
-.ev ul{margin:6px 0 0;padding-left:0;list-style-position:inside}
+.ev ul{margin:6px 0 0;padding-left:20px}.ev p{margin:6px 0;max-width:60ch}.ev .btn{display:inline-block;margin-top:14px;padding:5px 14px;font-size:15px}.ev ul{clear:both}
 @media(min-width:860px){
 .tl:before{left:50%;margin-left:-2px}
 .ev{width:50%;padding:0 40px 0 0;text-align:left}.ev ul{text-align:left}
@@ -155,7 +155,9 @@ const LINKS={mail:"mailto:deliventgd@gmail.com",li:"https://www.linkedin.com/in/
 /* ===== engine ===== */
 let lang="en";try{lang=localStorage.getItem("lang")||(navigator.language||"").startsWith("ru")?"ru":"en";const s=localStorage.getItem("lang");if(s)lang=s}catch(e){}
 const L=o=>o[lang==="ru"?1:0];const $=s=>document.querySelector(s);
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const esc=s=>String(s)
+  .replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))
+  .replace(/(^|\s)([А-Яа-яЁёA-Za-z])\s+/g,'$1$2\u00A0');
 const ul=a=>"<ul>"+a.map(x=>"<li>"+esc(x)+"</li>").join("")+"</ul>";
 function nav(){$("#logo").innerHTML="Anna Kalmykova<small>"+esc(L(UI.job).toLowerCase())+"</small>";const r=location.hash||"#/";$("#nav").innerHTML=UI.nav.map(n=>`<a href="${"#/"+n[2]}">${esc(L(n))}</a>`.replace(/L\(n\)/,"")).join("")}
 const ICON={mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',li:'in',tg:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3L3 10.5l5.5 2L18 6l-7 7.5V19l3-3.5 4 3z"/></svg>'};
