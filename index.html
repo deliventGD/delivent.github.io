@@ -203,14 +203,14 @@ nav a:hover {
   color:var(--sand);
 }
 /* БЕГУЩАЯ СТРОКА «как вывеска»: окно --win показывает примерно два слова.
-   Шаг повтора = 280px за 11.2с = 25px/с (скорость полоски такая же).
+   Скорость = 25px/с (JS подгоняет время под длину текста), у полоски те же 25px/с.
    Хочешь медленнее — увеличь оба времени (11.2s и 2.24s) в одинаковое число раз. */
 .mq{--win:12em;width:var(--win);max-width:100%;overflow:hidden;white-space:nowrap;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.mq-t{display:inline-block;animation:mqRun 11.2s linear infinite}
-.mq-t span{display:inline-block;width:280px}
-@keyframes mqRun{from{transform:translateX(0)}to{transform:translateX(-280px)}}
+.mq-t{--w:280px;display:inline-block;animation:mqRun 11.2s linear infinite} /* --w и время выставляет JS (функция fitMarquee) */
+.mq-t span{display:inline-block;padding-right:.45em} /* .45em = расстояние между повторами; меняй тут */
+@keyframes mqRun{from{transform:translateX(0)}to{transform:translateX(calc(-1*var(--w)))}}
 
 .hero .by {
   font-size:20px;
@@ -273,7 +273,13 @@ nav a:hover {
   overflow:hidden;
 }
 
+/* Фото заполняет рамку целиком и обрезается по её размеру (рамка не меняется от размера фото) */
+.photo {
+  position:relative;
+}
 .photo img {
+  position:absolute;
+  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
@@ -920,10 +926,17 @@ dd {
   display:grid;
 }
 
+.car .sl {
+  position:relative;
+}
+/* Картинка в листалке: рамка всегда одного размера (16:10), любая картинка вписывается целиком (contain),
+   лишнее — тёмные поля. Хочешь, чтобы картинка заполняла рамку и обрезалась — поменяй contain на cover */
 .car img {
+  position:absolute;
+  inset:0;
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain;
 }
 
 .car .nv {
@@ -1041,6 +1054,11 @@ const UI={
  game:["Game page","Страница игры"],proj:["Projects","Проекты"],talk:["Read the talk","Читать доклад"],
  f:{theme:["Genre","Жанр"],engine:["Engine","Движок"],role:["My role","Моя роль"],pitch:["Pitch","Питч"]},
  did:["What I worked on","Чем я занималась"],solved:["A problem I solved","Пример задачи, которую я решала"],shots:["Images","Изображения"],itch:["Play on itch.io","Играть на itch.io"],
+ /* НАВЫКИ: 4 карточки. skillsT — заголовки карточек, skillsL — списки (в том же порядке).
+    КАК ДОБАВИТЬ НАВЫК: впиши его в конец нужного списка ДВАЖДЫ: в английскую часть и в русскую,
+    на одно и то же место (например "Level design" и "Левел-дизайн").
+    КАК ДОБАВИТЬ ПОДСКАЗКУ: добавь строку в SKILL_INFO ниже, ключ = английское название навыка.
+    КАК ДОБАВИТЬ НОВУЮ КАРТОЧКУ: добавь заголовок в skillsT и список в skillsL (сетка подстроится сама). */
  skillsT:[["Design","Проектирование"],["Tools","Инструменты"],["Soft skills","Soft skills"],["Languages","Языки"]],
  skillsL:[[["Game systems and mechanics","Level design","Technical specifications","Documentation"],["Игровые системы и механики","Левел-дизайн","Технические задания","Документация"]],
           [["Unity","Unreal Engine 5","Figma","Miro"],["Unity","Unreal Engine 5","Figma","Miro"]],
@@ -1218,15 +1236,22 @@ function edcar(){const c=$("#edcar");if(!c)return;const sl=[...c.querySelectorAl
    поэтому вёрстка не прыгает
    ===================================================================== */
 let VIEW="";
+// подгоняет бегущую строку: шаг = ширина одного текста, время = ширина/25 (25px/с, как у полоски)
+function fitMarquee(){document.querySelectorAll(".mq-t").forEach(t=>{const w=t.firstElementChild.getBoundingClientRect().width;if(w){t.style.setProperty("--w",w+"px");t.style.animationDuration=(w/25)+"s"}})}
 function render(isLang){
  document.documentElement.lang=lang;nav();ANIM=!isLang;
  document.querySelectorAll("[data-l]").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
  const id=(location.hash||"#/").replace(/^#\/?/,""),isGame=id.startsWith("game/");
- $("#app").innerHTML=isGame?game(id.slice(5)):home();carousel();edcar();VIEW=isGame?"game":"home";
+ $("#app").innerHTML=isGame?game(id.slice(5)):home();carousel();edcar();VIEW=isGame?"game":"home";fitMarquee();if(document.fonts)document.fonts.ready.then(fitMarquee);
  if(isLang)return;
  const t=!isGame&&id?document.getElementById(id):null;
  if(t)t.scrollIntoView();else window.scrollTo(0,0)}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-l]");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("lang",lang)}catch(x){}render(true)});
+// любая ссылка вида #/секция на главной: плавно едем к секции, даже если мы уже на этом адресе
+document.addEventListener("click",e=>{const a=e.target.closest('a[href^="#/"]');if(!a||VIEW!=="home")return;
+ const id=a.getAttribute("href").slice(2);if(id.startsWith("game/"))return;
+ const t=id?document.getElementById(id):null;
+ if(t||!id){e.preventDefault();history.replaceState(null,"",a.getAttribute("href"));t?t.scrollIntoView():scrollTo({top:0})}});
 // клик по меню на главной: просто едем вниз к секции (Контакты тоже), без перерисовки
 addEventListener("hashchange",()=>{const id=(location.hash||"#/").replace(/^#\/?/,""),t=id&&!id.startsWith("game/")?document.getElementById(id):null;
  if(VIEW==="home"&&t){t.scrollIntoView();return}render(false)});
