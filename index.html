@@ -4,149 +4,1037 @@
 <title>Anna Kalmykova — Game Designer</title>
 <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;800&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#efe4cf;--paper:#f7f0e1;--red:#a8201a;--deep:#7a1511;--ink:#2b1a16;--sand:#d9c7a6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*,*:before,*:after{box-sizing:inherit}html{scroll-padding-top:70px;scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Onest,system-ui,sans-serif}
-h1,h2,h3{font-family:Bitter,Georgia,serif;line-height:1.15;margin:0}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--red);outline-offset:2px}
-.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
-header.top{position:sticky;top:0;z-index:9;background:var(--red);color:var(--paper)}
-header.top .wrap{display:flex;align-items:center;gap:18px;height:56px}
-.logo{font-family:Bitter,serif;font-weight:800;text-decoration:none;margin-right:auto;line-height:1.15;font-size:15px}.logo small{display:block;font:400 12px Onest;color:var(--sand)}
-nav{display:flex;gap:18px;font-size:15px}nav a{text-decoration:none}nav a:hover{text-decoration:underline}
-.lang{display:flex;border:2px solid var(--paper)}
-.lang button{background:none;border:0;color:var(--paper);font:700 13px Onest;padding:3px 9px;cursor:pointer}
-.lang button.on{background:var(--paper);color:var(--red)}
-@media(max-width:700px){nav{display:none}}
-.hero{background:var(--red);color:var(--paper);padding:56px 0 70px;position:relative}
-.hero:after{content:"";position:absolute;left:0;right:0;bottom:-14px;height:14px;background:repeating-linear-gradient(90deg,var(--deep) 0 28px,var(--red) 28px 56px)}
-.hero .wrap{display:grid;grid-template-columns:auto 1.5fr 1fr;gap:36px;align-items:center}.stats{border-right:3px solid var(--paper);padding-right:24px;text-align:right;display:grid;gap:26px;align-self:stretch;align-content:center}.stats b{display:block;font:800 40px/1 Bitter,serif}.stats span{font-size:14px;color:var(--sand)}.hero .kick{font-size:18px;color:var(--sand)}.hero .by{font-size:20px;margin:6px 0 10px}.hl{display:inline-flex;gap:6px;margin-left:8px}.hl button{background:var(--paper);color:var(--red);border:2px solid var(--ink);font:700 13px Onest;padding:1px 10px;cursor:pointer}.hl button.on{background:var(--ink);color:var(--paper)}.side .btns{margin-top:22px;flex-direction:column;align-items:flex-start}
-.hero h1{font-size:clamp(40px,7vw,76px);font-weight:800}
-.hero .role{font-size:19px;margin:10px 0 18px;color:var(--sand)}
-.hero p{max-width:52ch;margin:0 0 12px}
-.photo{aspect-ratio:4/5;background:var(--sand);border:3px solid var(--ink);box-shadow:10px 10px 0 var(--deep);display:grid;place-items:center;color:var(--ink);font-size:14px;text-align:center;padding:10px;overflow:hidden}
-.photo img{width:100%;height:100%;object-fit:cover}
-@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.photo{max-width:280px}.stats{border-right:0;border-left:3px solid var(--paper);padding:0 0 0 16px;text-align:left;grid-auto-flow:column;gap:22px;order:2}}
-.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-.btn{display:inline-block;background:var(--paper);color:var(--red);border:2px solid var(--ink);padding:8px 18px;font-weight:700;text-decoration:none;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
-.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
-.btn.red{background:var(--red);color:var(--paper)}
-section.s{padding:74px 0 10px}
-.s h2{font-size:clamp(30px,5vw,46px);margin-bottom:38px;color:var(--deep);text-align:center}.s h2:after{content:"";display:block;width:70px;height:3px;background:var(--ink);margin:12px auto 0}
-/* timeline */
-.tl{position:relative;display:grid;gap:26px}
-.tl:before{content:"";position:absolute;left:11px;top:27px;bottom:6px;width:4px;background:var(--red)}
-.ev{position:relative;padding-left:44px}
-.ev:before{content:"";position:absolute;left:1px;top:7px;width:20px;height:20px;box-sizing:border-box;background:var(--bg);border:4px solid var(--red);border-radius:50%}
-.ev h3{font-size:22px}.ev .meta{color:var(--deep);font-weight:500;margin:2px 0 6px}
-.ev ul{margin:6px 0 0;padding-left:20px}.ev p{margin:6px 0;max-width:60ch}.ev .btn{display:inline-block;margin-top:14px;padding:5px 14px;font-size:15px}.ev ul{clear:both}
-@media(min-width:860px){
-  .tl:before{
+
+/* ===== 1. ОБЩИЕ НАСТРОЙКИ: цвета (--red, --bg ...), шрифты, ширина страницы ===== */
+:root {
+  --bg:#efe4cf;
+  --paper:#f7f0e1;
+  --red:#a8201a;
+  --deep:#7a1511;
+  --ink:#2b1a16;
+  --sand:#d9c7a6;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+
+*,*:before,*:after {
+  box-sizing:inherit;
+}
+
+html {
+  scroll-padding-top:70px;
+  scroll-behavior:smooth;
+}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font:400 17px/1.6 Onest,system-ui,sans-serif;
+}
+
+h1,h2,h3 {
+  font-family:Bitter,Georgia,serif;
+  line-height:1.15;
+  margin:0;
+}
+
+a {
+  color:inherit;
+}
+
+:focus-visible {
+  outline:3px solid var(--red);
+  outline-offset:2px;
+}
+
+.wrap {
+  max-width:1040px;
+  margin:0 auto;
+  padding:0 22px;
+}
+
+
+/* ===== 2. ШАПКА: имя слева, меню и переключатель EN/RU ===== */
+header.top {
+  position:sticky;
+  top:0;
+  z-index:9;
+  background:var(--red);
+  color:var(--paper);
+}
+
+header.top .wrap {
+  display:flex;
+  align-items:center;
+  gap:18px;
+  height:56px;
+}
+
+.logo {
+  font-family:Bitter,serif;
+  font-weight:800;
+  text-decoration:none;
+  margin-right:auto;
+  line-height:1.15;
+  font-size:15px;
+}
+
+.logo small {
+  display:block;
+  font:400 12px Onest;
+  color:var(--sand);
+}
+
+nav {
+  display:flex;
+  gap:18px;
+  font-size:15px;
+}
+
+nav a {
+  text-decoration:none;
+}
+
+nav a:hover {
+  text-decoration:underline;
+}
+
+.lang {
+  display:flex;
+  border:2px solid var(--paper);
+}
+
+.lang button {
+  background:none;
+  border:0;
+  color:var(--paper);
+  font:700 13px Onest;
+  padding:3px 9px;
+  cursor:pointer;
+}
+
+.lang button.on {
+  background:var(--paper);
+  color:var(--red);
+}
+
+@media(max-width:700px) {
+  nav {
+    display:none;
+  }
+}
+
+
+/* ===== 3. ОБО МНЕ (красный первый экран): цифры, текст, фото ===== */
+.hero {
+  background:var(--red);
+  color:var(--paper);
+  padding:56px 0 70px;
+  position:relative;
+}
+
+.hero:after {
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-14px;
+  height:14px;
+  background:repeating-linear-gradient(90deg,var(--deep) 0 28px,var(--red) 28px 56px);
+  background-size:56px 14px;           /* ширина одного «зубца» (период полоски) */
+  animation:stripeRun 2.24s linear infinite; /* 56px / 2.24с = 25px/с — как у надписи */
+}
+@keyframes stripeRun{from{background-position:0 0}to{background-position:-56px 0}}
+
+.hero .wrap {
+  display:grid;
+  grid-template-columns:130px minmax(0,1.5fr) minmax(0,1fr);
+  gap:36px;
+  align-items:center;
+}
+
+.stats {
+  overflow:hidden;
+  border-right:3px solid var(--paper);
+  padding-right:24px;
+  text-align:right;
+  display:grid;
+  gap:26px;
+  align-self:stretch;
+  align-content:center;
+}
+
+.stats b {
+  display:block;
+  font:800 40px/1 Bitter,serif;
+}
+
+.stats span {
+  font-size:14px;
+  color:var(--sand);
+}
+
+.stats.anim>div {
+  animation:statIn .7s cubic-bezier(.2,.8,.2,1) both;
+  --from:140%;
+}
+
+.stats.anim>div:nth-child(2) {
+  animation-delay:.15s;
+}
+
+.stats.anim>div:nth-child(3) {
+  animation-delay:.3s;
+}
+
+@keyframes statIn {
+  from {
+    transform:translateX(var(--from));
+  }
+  to {
+    transform:none;
+  }
+}
+
+.hero .kick {
+  font-size:18px;
+  color:var(--sand);
+}
+/* БЕГУЩАЯ СТРОКА «как вывеска»: окно --win показывает примерно два слова.
+   Шаг повтора = 280px за 11.2с = 25px/с (скорость полоски такая же).
+   Хочешь медленнее — увеличь оба времени (11.2s и 2.24s) в одинаковое число раз. */
+.mq{--win:12em;width:var(--win);max-width:100%;overflow:hidden;white-space:nowrap;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq-t{display:inline-block;animation:mqRun 11.2s linear infinite}
+.mq-t span{display:inline-block;width:280px}
+@keyframes mqRun{from{transform:translateX(0)}to{transform:translateX(-280px)}}
+
+.hero .by {
+  font-size:20px;
+  margin:6px 0 10px;
+}
+
+.hl {
+  display:inline-flex;
+  gap:6px;
+  margin-left:8px;
+}
+
+.hl button {
+  background:var(--paper);
+  color:var(--red);
+  border:2px solid var(--ink);
+  font:700 13px Onest;
+  padding:1px 10px;
+  cursor:pointer;
+}
+
+.hl button.on {
+  background:var(--ink);
+  color:var(--paper);
+}
+
+.side .btns {
+  margin-top:22px;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.hero h1 {
+  font-size:clamp(40px,7vw,76px);
+  font-weight:800;
+}
+
+.hero .role {
+  font-size:19px;
+  margin:10px 0 18px;
+  color:var(--sand);
+}
+
+.hero p {
+  max-width:52ch;
+  margin:0 0 12px;
+}
+
+.photo {
+  aspect-ratio:4/5;
+  background:var(--sand);
+  border:3px solid var(--ink);
+  box-shadow:10px 10px 0 var(--deep);
+  display:grid;
+  place-items:center;
+  color:var(--ink);
+  font-size:14px;
+  text-align:center;
+  padding:10px;
+  overflow:hidden;
+}
+
+.photo img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+@media(max-width:860px) {
+  .hero .wrap {
+    grid-template-columns:1fr;
+  }
+  .photo {
+    max-width:280px;
+  }
+  .stats {
+    border-right:0;
+    border-left:3px solid var(--paper);
+    padding:0 0 0 16px;
+    text-align:left;
+    grid-auto-flow:column;
+    gap:22px;
+    order:2;
+  }
+  .stats.anim>div {
+    animation-delay:0s!important;
+  }
+  .stats.anim>div:nth-child(1) {
+    --from:-140%;
+  }
+  .stats.anim>div:nth-child(2) {
+    --from:-260%;
+  }
+  .stats.anim>div:nth-child(3) {
+    --from:-380%;
+  }
+}
+
+
+/* ===== 4. КНОПКИ ===== */
+.btns {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
+}
+
+.btn {
+  display:inline-block;
+  background:var(--paper);
+  color:var(--red);
+  border:2px solid var(--ink);
+  padding:8px 18px;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow:4px 4px 0 var(--ink);
+  transition:transform .12s,box-shadow .12s;
+}
+
+.btn:hover {
+  transform:translate(2px,2px);
+  box-shadow:2px 2px 0 var(--ink);
+}
+
+.btn.red {
+  background:var(--red);
+  color:var(--paper);
+}
+
+
+/* ===== 5. ЗАГОЛОВКИ СЕКЦИЙ ===== */
+section.s {
+  padding:74px 0 10px;
+}
+
+.s h2 {
+  font-size:clamp(30px,5vw,46px);
+  margin-bottom:38px;
+  color:var(--deep);
+  text-align:center;
+}
+
+.s h2:after {
+  content:"";
+  display:block;
+  width:70px;
+  height:3px;
+  background:var(--ink);
+  margin:12px auto 0;
+}
+
+
+/* ===== 6. ОПЫТ: таймлайн ===== */
+.tl {
+  position:relative;
+  display:grid;
+  gap:26px;
+}
+
+.tl:before {
+  content:"";
+  position:absolute;
+  left:11px;
+  top:27px;
+  bottom:6px;
+  width:4px;
+  background:var(--red);
+}
+
+.ev {
+  position:relative;
+  padding-left:44px;
+}
+
+.ev:before {
+  content:"";
+  position:absolute;
+  left:1px;
+  top:7px;
+  width:20px;
+  height:20px;
+  box-sizing:border-box;
+  background:var(--bg);
+  border:4px solid var(--red);
+  border-radius:50%;
+}
+
+.ev h3 {
+  font-size:22px;
+}
+
+.ev .meta {
+  color:var(--deep);
+  font-weight:500;
+  margin:2px 0 6px;
+}
+
+.ev ul {
+  margin:6px 0 0;
+  padding-left:20px;
+}
+
+.ev p {
+  margin:6px 0;
+  max-width:60ch;
+}
+
+.ev .btn {
+  display:inline-block;
+  margin-top:14px;
+  padding:5px 14px;
+  font-size:15px;
+}
+
+.ev ul {
+  clear:both;
+}
+
+@media(min-width:860px) {
+  .tl:before {
     left:50%;
     margin-left:-2px;
   }
-
-  .ev{
+  .ev {
     width:50%;
     padding:0 40px 0 0;
     text-align:left;
   }
-
-  .ev:before{
+  .ev:before {
     left:auto;
     right:-10px;
   }
-
-  .ev:nth-child(even){
+  .ev:nth-child(even) {
     margin-left:50%;
     padding:0 0 0 40px;
     text-align:left;
   }
-
-  .ev:nth-child(even):before{
+  .ev:nth-child(even):before {
     right:auto;
     left:-10px;
   }
-
-  .ev p,
-  .ev ul{
+  .ev p, .ev ul {
     margin-left:0;
     margin-right:0;
   }
-
-  .ev ul{
+  .ev ul {
     display:block;
   }
 }
-/* portfolio mosaic: geometry traced from the template */
-.grid{position:relative;aspect-ratio:1267/567;margin:0 6px}
-.tile{position:absolute;display:block;text-decoration:none;color:var(--paper);filter:drop-shadow(3px 0 0 var(--ink)) drop-shadow(-3px 0 0 var(--ink)) drop-shadow(0 3px 0 var(--ink)) drop-shadow(0 -3px 0 var(--ink));transition:transform .15s}
-a.tile:hover{transform:translateY(-4px)}
-.tile .sh{height:100%;display:grid;place-content:center;text-align:center;padding:14px 24px;background-size:cover;background-position:center}
-.tile b{font:800 clamp(18px,2.6vw,30px)/1.15 Bitter,serif}.tile small{display:block;opacity:.85}
-.tile.soon{color:var(--deep)}.tile.soon .sh{background:var(--sand)}
-.t1{left:0;top:.4%;width:29%;height:64%}
-.t2{left:32.4%;top:.4%;width:32.6%;height:64%}
-.t3{left:62.3%;top:0;width:37.7%;height:64%}
-.t4{left:0;top:69.3%;width:44.5%;height:30.7%}
-.t5{left:32.2%;top:69%;width:34.3%;height:30.5%}
-.t6{left:58.2%;top:69%;width:41.8%;height:30.5%}
-.t1 .sh{clip-path:none}
-.t2 .sh{clip-path:polygon(0 0,100% 0,100% 37%,82% 73%,82% 100%,0 100%);padding-right:22%}
-.t3 .sh{clip-path:polygon(15.6% 0,99% 0,100% 100%,0 100%,0 74%,15.6% 40.5%);padding-left:20%}
-.t4 .sh{clip-path:polygon(0 0,65% 0,65% 35%,100% 100%,0 100%);padding-right:40%}
-.t5 .sh{clip-path:polygon(0 0,64% 0,99.5% 49%,100% 100%,43.8% 100%,0 32.5%);padding:14px 18%}
-.t6 .sh{clip-path:polygon(0 0,100% 0,100% 100%,26.7% 100%,26.7% 45%);padding-left:32%}
-@media(max-width:760px){.grid{aspect-ratio:auto;display:grid;gap:16px}.tile{position:static;height:190px;width:auto}}
-/* skills */
-.sk{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.sk div{background:var(--paper);border:3px solid var(--ink);padding:18px 20px}
-.sk h3{font-size:20px;margin-bottom:10px;color:var(--red)}.sk ul{margin:0;padding-left:18px}
-.edcar{max-width:720px;margin:0 auto}.edu{position:relative;display:none;grid-template-columns:1fr 150px;gap:22px;align-items:center;background:var(--paper);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--red);padding:30px 28px 26px;min-height:230px}.edu.on{display:grid}.edu .y{color:var(--deep);font-size:15px}.edu h3{font-size:30px;margin:6px 0}.edu .sq{aspect-ratio:1;border:3px solid var(--ink);border-radius:22px;background:var(--bg);display:grid;place-items:center;text-align:center;font-size:13px;padding:8px}.edu .gpa{position:absolute;top:10px;right:14px;background:var(--red);color:var(--paper);font-weight:700;padding:1px 12px;border:2px solid var(--ink)}.edu.soon{grid-template-columns:1fr;justify-items:center;border-style:dashed;box-shadow:none}.edu.soon .sq{width:150px;font:800 20px Bitter,serif;color:var(--deep)}.ednav{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:22px}.ednav button{width:40px;height:40px;border:2px solid var(--ink);background:var(--paper);color:var(--red);font:800 20px Onest;cursor:pointer}.ednav i{width:10px;height:10px;border:2px solid var(--ink);background:var(--bg)}.ednav i.on{background:var(--red)}@media(max-width:560px){.edu{grid-template-columns:1fr;padding-top:44px}.edu .sq{width:110px}}
-/* contacts */
-.crow{display:grid;grid-template-columns:64px 160px 1fr auto;gap:18px;align-items:center;padding:20px 0;border-top:3px solid var(--ink);text-decoration:none}
-.crow:last-of-type{border-bottom:3px solid var(--ink)}
-.crow b{font:800 22px Bitter,serif}.crow:hover{background:var(--paper)}.crow span:last-child{color:var(--red);font-weight:700;font-size:22px}.ic{width:56px;height:56px;border-radius:50%;background:var(--red);color:var(--paper);display:grid;place-items:center;font:800 20px Bitter,serif}.ic svg{width:26px;height:26px}
-@media(max-width:600px){.crow{grid-template-columns:56px 1fr auto}.crow span:nth-of-type(2){grid-column:2}.crow b{grid-column:2}}
-.more{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:20px}
-.more a{display:grid;grid-template-columns:26px 1fr;gap:2px 10px;align-items:center;border:3px solid var(--ink);background:var(--paper);padding:18px 20px;text-decoration:none;box-shadow:5px 5px 0 var(--ink)}.more a:hover{background:var(--sand)}.more a svg{width:24px;height:24px;color:var(--red)}.more b{font-family:Bitter,serif;font-size:20px}.more small{grid-column:2}
-/* game page */
-.back{display:inline-block;margin:28px 0 0;font-weight:700;color:var(--red)}
-.gh{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;margin-top:14px}
-.gh h1{font-size:clamp(34px,6vw,58px);color:var(--red)}
-.gh .sub{font:500 22px Bitter,serif;color:var(--deep);margin:6px 0 16px}
-dl{display:grid;grid-template-columns:110px 1fr;gap:8px 18px;margin:0}dt{color:var(--red);font-weight:700}dd{margin:0}
-@media(max-width:760px){.gh{grid-template-columns:1fr}}
-.car{position:relative;border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);background:var(--ink)}
-.car .sl{aspect-ratio:16/10;display:none;place-items:center;color:var(--paper);font:800 24px Bitter,serif;text-align:center;padding:14px}
-.car .sl.on{display:grid}.car img{width:100%;height:100%;object-fit:cover}
-.car .nv{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border:2px solid var(--ink);background:var(--paper);color:var(--red);font:800 20px Onest;cursor:pointer}
-.car .p{left:8px}.car .n{right:8px}
-.car .ct{position:absolute;right:10px;bottom:8px;background:var(--paper);padding:0 8px;font-size:14px;border:2px solid var(--ink)}
-.blk{margin-top:44px;max-width:68ch}.blk h2{font-size:28px;color:var(--deep);margin-bottom:10px}.blk ul{padding-left:20px}
-.ex{background:var(--paper);border-left:8px solid var(--red);padding:14px 20px}
-footer{margin-top:90px;padding:24px 0;background:var(--ink);color:var(--sand);font-size:14px}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+
+/* ===== 7. ПОРТФОЛИО: плитки-фигуры (формы задаются в JS, массив SHAPES) ===== */
+.grid {
+  position:relative;
+  aspect-ratio:1267/567;
+  margin:0 6px;
+}
+
+.tile {
+  position:absolute;
+  left:var(--l);
+  top:var(--t);
+  width:var(--w);
+  display:block;
+  text-decoration:none;
+  color:var(--paper);
+  pointer-events:none;
+  transition:transform .15s;
+}
+
+.tile svg {
+  display:block;
+  width:100%;
+  height:auto;
+  overflow:visible;
+  pointer-events:none;
+}
+
+.tile polygon {
+  pointer-events:auto;
+}
+
+a.tile:hover {
+  transform:translateY(-4px);
+}
+
+.tile .cap {
+  position:absolute;
+  left:var(--cx);
+  top:var(--cy);
+  transform:translate(-50%,-50%);
+  width:max-content;
+  max-width:60%;
+  text-align:center;
+  pointer-events:none;
+}
+
+.tile .cap b {
+  display:block;
+  font:800 clamp(18px,2.6vw,30px)/1.15 Bitter,serif;
+}
+
+.tile .cap small {
+  display:block;
+  opacity:.85;
+}
+
+.tile .cap.hov {
+  opacity:0;
+  background:rgba(43,26,22,.78);
+  padding:6px 14px;
+  transition:opacity .2s;
+}
+
+a.tile:hover .cap.hov,a.tile:focus-visible .cap.hov {
+  opacity:1;
+}
+
+.tile.soon {
+  color:var(--deep);
+}
+
+@media(max-width:760px) {
+  .grid {
+    aspect-ratio:auto;
+    display:grid;
+    gap:16px;
+  }
+  .tile {
+    position:relative;
+    left:auto;
+    top:auto;
+    width:100%;
+  }
+  .tile .cap {
+    max-width:80%;
+  }
+}
+
+
+/* ===== 8. НАВЫКИ: карточки и всплывающие подсказки ===== */
+.sk {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+
+.sk div {
+  background:var(--paper);
+  border:3px solid var(--ink);
+  padding:18px 20px;
+}
+
+.sk h3 {
+  font-size:20px;
+  margin-bottom:10px;
+  color:var(--red);
+}
+
+.sk ul {
+  margin:0;
+  padding-left:0;
+  list-style:none;
+}
+
+.sk li {
+  position:relative;
+  padding:6px 0;
+  border-bottom:2px dashed rgba(43,26,22,.4); /* пунктир между навыками: намёк, что можно навести */
+}
+.sk li:last-child{border-bottom:0}
+.sk li[tabindex]:hover{color:var(--red)}
+
+.sk .tip {
+  display:none;
+  position:absolute;
+  left:0;
+  top:100%;
+  z-index:6;
+  width:240px;
+  margin-top:4px;
+  padding:10px 12px;
+  background:var(--paper);
+  border:3px solid var(--ink);
+  box-shadow:4px 4px 0 var(--red);
+  font-size:14px;
+  line-height:1.4;
+}
+
+.sk .tip b {
+  display:block;
+  font-family:Bitter,serif;
+  color:var(--red);
+  margin-bottom:2px;
+}
+
+.sk li:hover .tip,.sk li:focus .tip,.sk li:focus-within .tip {
+  display:block;
+}
+
+.sk>div:last-child .tip {
+  left:auto;
+  right:0;
+}
+
+.cert {
+  display:block;
+  color:var(--red);
+  font-weight:700;
+  text-decoration:none;
+  margin-top:2px;
+}
+
+.cert:hover {
+  text-decoration:underline;
+}
+
+
+/* ===== 9. ОБРАЗОВАНИЕ: карточка со слайдером ===== */
+.edcar {
+  max-width:720px;
+  margin:0 auto;
+}
+
+.edu {
+  position:relative;
+  display:none;
+  grid-template-columns:1fr 150px;
+  gap:22px;
+  align-items:center;
+  background:var(--paper);
+  border:3px solid var(--ink);
+  box-shadow:6px 6px 0 var(--red);
+  padding:30px 28px 26px;
+  min-height:230px;
+}
+
+.edu.on {
+  display:grid;
+}
+
+.edu .y {
+  color:var(--deep);
+  font-size:15px;
+}
+
+.edu h3 {
+  font-size:30px;
+  margin:6px 0;
+}
+
+.edu .sq {
+  aspect-ratio:1;
+  border:3px solid var(--ink);
+  border-radius:22px;
+  background:var(--bg);
+  display:grid;
+  place-items:center;
+  text-align:center;
+  font-size:13px;
+  padding:8px;
+}
+
+.edu .gpa {
+  position:absolute;
+  top:10px;
+  right:14px;
+  background:var(--red);
+  color:var(--paper);
+  font-weight:700;
+  padding:1px 12px;
+  border:2px solid var(--ink);
+}
+
+.edu.soon {
+  grid-template-columns:1fr;
+  justify-items:center;
+  border-style:dashed;
+  box-shadow:none;
+}
+
+.edu.soon .sq {
+  width:150px;
+  font:800 20px Bitter,serif;
+  color:var(--deep);
+}
+
+.edu a.sq {
+  color:var(--ink);
+  text-decoration:none;
+  font:700 17px/1.25 Onest,sans-serif;
+  cursor:pointer;
+  transition:background .15s;
+}
+
+.edu a.sq:hover {
+  background:var(--sand);
+}
+
+.edu a.sq:active {
+  background:var(--deep);
+  color:var(--paper);
+}
+
+.ednav {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  margin-top:22px;
+}
+
+.ednav button {
+  width:40px;
+  height:40px;
+  border:2px solid var(--ink);
+  background:var(--paper);
+  color:var(--red);
+  font:800 20px Onest;
+  cursor:pointer;
+}
+
+.ednav i {
+  width:10px;
+  height:10px;
+  border:2px solid var(--ink);
+  background:var(--bg);
+}
+
+.ednav i.on {
+  background:var(--red);
+}
+
+@media(max-width:560px) {
+  .edu {
+    grid-template-columns:1fr;
+    padding-top:44px;
+  }
+  .edu .sq {
+    width:110px;
+  }
+}
+
+
+/* ===== 10. КОНТАКТЫ ===== */
+.crow {
+  display:grid;
+  grid-template-columns:64px 160px 1fr auto;
+  gap:18px;
+  align-items:center;
+  padding:20px 0;
+  border-top:3px solid var(--ink);
+  text-decoration:none;
+}
+
+.crow:last-of-type {
+  border-bottom:3px solid var(--ink);
+}
+
+.crow b {
+  font:800 22px Bitter,serif;
+}
+
+.crow:hover {
+  background:var(--paper);
+}
+
+.crow span:last-child {
+  color:var(--red);
+  font-weight:700;
+  font-size:22px;
+}
+
+.ic {
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:var(--red);
+  color:var(--paper);
+  display:grid;
+  place-items:center;
+  font:800 20px Bitter,serif;
+}
+
+.ic svg {
+  width:26px;
+  height:26px;
+}
+
+@media(max-width:600px) {
+  .crow {
+    grid-template-columns:56px 1fr auto;
+  }
+  .crow span:nth-of-type(2) {
+    grid-column:2;
+  }
+  .crow b {
+    grid-column:2;
+  }
+}
+
+.more {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px;
+  margin-top:20px;
+}
+
+.more a {
+  display:grid;
+  grid-template-columns:26px 1fr;
+  gap:2px 10px;
+  align-items:center;
+  border:3px solid var(--ink);
+  background:var(--paper);
+  padding:18px 20px;
+  text-decoration:none;
+  box-shadow:5px 5px 0 var(--ink);
+}
+
+.more a:hover {
+  background:var(--sand);
+}
+
+.more a svg {
+  width:24px;
+  height:24px;
+  color:var(--red);
+}
+
+.more b {
+  font-family:Bitter,serif;
+  font-size:20px;
+}
+
+.more small {
+  grid-column:2;
+}
+
+
+/* ===== 11. СТРАНИЦА ИГРЫ ===== */
+.back {
+  display:inline-block;
+  margin:28px 0 0;
+  font-weight:700;
+  color:var(--red);
+}
+
+.gh {
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:30px;
+  margin-top:14px;
+}
+
+.gh h1 {
+  font-size:clamp(34px,6vw,58px);
+  color:var(--red);
+}
+
+.gh .sub {
+  font:500 22px Bitter,serif;
+  color:var(--deep);
+  margin:6px 0 16px;
+}
+
+dl {
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:8px 18px;
+  margin:0;
+}
+
+dt {
+  color:var(--red);
+  font-weight:700;
+}
+
+dd {
+  margin:0;
+}
+
+@media(max-width:760px) {
+  .gh {
+    grid-template-columns:1fr;
+  }
+}
+
+.car {
+  position:relative;
+  border:3px solid var(--ink);
+  box-shadow:8px 8px 0 var(--ink);
+  background:var(--ink);
+}
+
+.car .sl {
+  aspect-ratio:16/10;
+  display:none;
+  place-items:center;
+  color:var(--paper);
+  font:800 24px Bitter,serif;
+  text-align:center;
+  padding:14px;
+}
+
+.car .sl.on {
+  display:grid;
+}
+
+.car img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.car .nv {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:42px;
+  height:42px;
+  border:2px solid var(--ink);
+  background:var(--paper);
+  color:var(--red);
+  font:800 20px Onest;
+  cursor:pointer;
+}
+
+.car .p {
+  left:8px;
+}
+
+.car .n {
+  right:8px;
+}
+
+.car .ct {
+  position:absolute;
+  right:10px;
+  bottom:8px;
+  background:var(--paper);
+  padding:0 8px;
+  font-size:14px;
+  border:2px solid var(--ink);
+}
+
+.blk {
+  margin-top:44px;
+  max-width:68ch;
+}
+
+.blk h2 {
+  font-size:28px;
+  color:var(--deep);
+  margin-bottom:10px;
+}
+
+.blk ul {
+  padding-left:20px;
+}
+
+.ex {
+  background:var(--paper);
+  border-left:8px solid var(--red);
+  padding:14px 20px;
+}
+
+
+/* ===== 12. ПОДВАЛ и отключение анимаций ===== */
+footer {
+  margin-top:90px;
+  padding:24px 0;
+  background:var(--ink);
+  color:var(--sand);
+  font-size:14px;
+}
+
+@media(prefers-reduced-motion:reduce) {
+  * {
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+}
+
 </style></head>
 <body>
+<!-- ===== ШАПКА (логотип, меню, EN/RU). Меню строится в JS: функция nav() ===== -->
 <header class="top"><div class="wrap">
 <a class="logo" href="#/" id="logo"></a>
 <nav id="nav"></nav>
 <div class="lang" role="group" aria-label="Language"><button data-l="en">EN</button><button data-l="ru">RU</button></div>
 </div></header>
+<!-- ===== ВЕСЬ КОНТЕНТ рисуется скриптом в этот блок ===== -->
 <main id="app"></main>
 <footer><div class="wrap">© 2026 Anna Kalmykova</div></footer>
 
 <script>
-/* ===== CONTENT — edit here. Each text is [English, Russian] ===== */
+/* =====================================================================
+   1. ФАЙЛЫ: фото и PDF. Положи файлы рядом с index.html и впиши имена тут
+   ===================================================================== */
+// ФОТО в рамку (блок «Обо мне»). Положи фото рядом с index.html (например в папку images)
+// и впиши путь: const PHOTO="images/me.jpg";  Лучше вертикальное фото, пропорция 4:5 (800x1000 px).
+// Рамка сама обрежет лишнее (object-fit: cover). Пока пусто — виден серый прямоугольник с подписью.
+const PHOTO="";
+
+// PDF-файлы: положи их в папку files и впиши имена
+const FILES={
+  recordBook:"files/record-book.pdf",        // зачётная книжка (кнопка в «Образовании»)
+  englishCert:"files/english-certificate.pdf" // сертификат по английскому (кнопка в «Навыках»)
+};
+
+/* =====================================================================
+   2. ТЕКСТЫ САЙТА. Везде пары [English, Русский]
+   ===================================================================== */
 const UI={
  nav:[["About","Обо мне","about"],["Experience","Опыт","exp"],["Portfolio","Портфолио","port"],["Skills","Навыки","skills"],["Contacts","Контакты","contacts"]],
  role:["Game designer · Portfolio","Гейм-дизайнер · Портфолио"],
  job:["Systems designer & producer","Системный дизайнер & продюсер"],
  about:[["I specialize in gameplay,       production and systems. I enjoy working in a game engine, doing technically complex and careful work that demands high precision.","I keep documentation, collect and analyze data, and write task specifications for every department."],
         ["Специализируюсь на геймплее, продюсировании и системах. Мне нравится выполнять в игровом движке технически сложную, кропотливую работу, требующую высокой точности.","Веду документацию, собираю и анализирую данные, а также составляю технические задания для всех отделов."]],
- soon:["Coming soon","Скоро будет"],stats:[["Concepts","Концептов",0],["Builds","Билдов",5],["Game jams","Гейм джемов",2]],kick:["Game designer • portfolio","Гейм дизайнер • портфолио"],cta:["Get in touch","Свяжитесь со мной"],cvEn:["Resume (EN)","Резюме (EN)"],cvRu:["Resume (RU)","Резюме (RU)"],
+ soon:["Coming soon","Скоро будет"],
+ // Цифры слева в «Обо мне»: [EN, RU, число]. Плюс перед числом ставится сам
+ stats:[["Concepts","Концептов",0],["Builds","Билдов",5],["Game jams","Гейм джемов",2]],kick:["Game designer • portfolio","Гейм дизайнер • портфолио"],cta:["Get in touch","Свяжитесь со мной"],cvEn:["Resume (EN)","Резюме (EN)"],cvRu:["Resume (RU)","Резюме (RU)"],
  photo:["Your photo here","Здесь будет ваше фото"],
  h:{exp:["Experience","Опыт"],port:["Portfolio","Портфолио"],skills:["Skills","Навыки"],edu:["Education","Образование"],contacts:["Contacts","Контакты"]},
  back:["← Back to portfolio","← Назад к портфолио"],
@@ -158,13 +1046,47 @@ const UI={
           [["Unity","Unreal Engine 5","Figma","Miro"],["Unity","Unreal Engine 5","Figma","Miro"]],
           [["Teamwork and team lead","Public speaking","Giving feedback"],["Командная работа и тимлид","Публичные выступления","Обратная связь"]],
           [["Russian — native","English — add level"],["Русский — родной","Английский — укажите уровень"]]],
- edu:{gpa:"—",y:["2024 – present","2024 – настоящее время"],t:["Game Design","Гейм-дизайн"],s:["HSE University — Faculty of Social and Computer Sciences","НИУ ВШЭ — Факультет социальных и компьютерных наук"],d:["Bachelor's degree, profile: game design (video game production)","Бакалавриат, профиль: гейм-дизайн (продюсирование видеоигр)"]},
- always:["Always in touch!","Всегда на связи!"],mail:["Email","Почта"],more:["More to explore:","Больше интересного тут:"],chan:["Telegram channel","Telegram-канал"],stud:["Student portfolio","Студенческое портфолио"]
+ edu:{gpa:"— 8.67",y:["2024 – present","2024 – настоящее время"],t:["Game Design","Гейм-дизайн"],s:["HSE University — Faculty of Social and Computer Sciences","НИУ ВШЭ — Факультет социальных и компьютерных наук"],d:["Bachelor's degree, profile: game design (video game production)","Бакалавриат, профиль: гейм-дизайн (продюсирование видеоигр)"]},
+ always:["Always in touch!","Всегда на связи!"],mail:["Email","Почта"],more:["More to explore:","Больше интересного тут:"],chan:["Telegram channel","Telegram-канал"],stud:["Student portfolio","Студенческое портфолио"],
+ record:["› Record book","› Зачётная книжка"],       // кнопка в карточке образования
+ cert:["› View certificate","› Посмотреть сертификат"] // ссылка у английского языка
 };
-const EXP=[ // title, meta, text/list, button(optional: [label-key, href])
+
+/* =====================================================================
+   3. НАВЫКИ: подсказки при наведении
+   Ключ = английское название навыка из UI.skillsL (точь-в-точь).
+   d = описание [EN, RU]. file = ссылка на PDF (покажется кнопка «Посмотреть сертификат»)
+   ===================================================================== */
+const SKILL_INFO={
+ "Game systems and mechanics":{d:["Designing core loops, rules and balance.","Проектирую основные циклы, правила и баланс."]},
+ "Level design":{d:["Building levels and pacing for game jams and student projects.","Собираю уровни и темп игры для джемов и учебных проектов."]},
+ "Technical specifications":{d:["Writing clear task specs for every department.","Пишу понятные технические задания для всех отделов."]},
+ "Documentation":{d:["Concept documents, feature kits, rulebooks.","Концепт-документы, фичекиты, рулбуки."]},
+ "Unity":{d:["Used in student projects and Red Carpet Cottage.","Использую в учебных проектах и Red Carpet Cottage."]},
+ "Unreal Engine 5":{d:["Used for development of Chakram.","Использую при разработке Chakram."]},
+ "Figma":{d:["Layouts and interface mockups.","Макеты и интерфейсы."]},
+ "Miro":{d:["Boards for planning and brainstorming.","Доски для планирования и брейншторма."]},
+ "Teamwork and team lead":{d:["Led the team on a game jam as team lead and producer.","Руководила командой на джеме как тимлид и продюсер."]},
+ "Public speaking":{d:["Speaker at Game Future Conference.","Выступала спикером на Game Future Conference."]},
+ "Giving feedback":{d:["Feedback on students' concept documents.","Обратная связь по концепт-документам студентов."]},
+ "English — add level":{file:FILES.englishCert} // только ссылка на сертификат, без подсказки
+};
+
+/* =====================================================================
+   4. ОПЫТ (таймлайн). Каждый блок {...} = одна точка на линии.
+   ЧТОБЫ ДОБАВИТЬ НОВУЮ: скопируй шаблон ниже, вставь в НУЖНОЕ МЕСТО списка (не забудь запятую между блоками).
+   Порядок на экране = порядок в списке; слева/справа чередуются сами.
+
+   {t:["Title EN","Название RU"],            // заголовок
+    m:["Meta EN (2026)","Подпись RU (2026)"], // подзаголовок: роль, год
+    p:["Text EN","Текст RU"],                  // абзац (необязательно)
+    l:[["Item EN 1","Item EN 2"],["Пункт RU 1","Пункт RU 2"]], // маркированный список (необязательно)
+    b:["game","#/game/ID_ИГРЫ"]},              // кнопка (необязательно): "game" = «Страница игры», id из массива GAMES
+   ===================================================================== */
+const EXP=[
  {t:["Game Design","Гейм-дизайн"],m:["Bachelor's (2024 – present) · HSE University","Бакалавриат (2024 – настоящее время) · НИУ ВШЭ"],p:["Profile: game design (video game production).","Профиль: гейм-дизайн (продюсирование видеоигр)."]},
  {t:["Systems Game Design","Системный гейм-дизайн"],m:["Tutor assistant (2025 – 2026)","Ассистент преподавателя (2025 – 2026)"],l:[["Checking homework (concept documents).","Giving feedback: comments on the feature, additions, layout and structure of documents, writing quality.","Checking coursework: preparing ready-made concept papers for existing student game docs."],["Проверка домашних заданий (концепт документов).","Обратная связь: комментарии по поводу фичекита, дополнения материала, верстки, структуры документации и грамотности.","Проверка курсовых работ (готовые концепт документы для существующих игр студентов)."]]},
- {t:["Game Developer","Разработчик игр"],m:["Student projects (2024 – present)","Учебные проекты (2024 – настоящее время)"],p:["Producing, game design and project development.","Продюсирование, гейм-дизайн и разработка игр."],b:["proj","#port"]},
+ {t:["Game Developer","Разработчик игр"],m:["Student projects (2024 – present)","Учебные проекты (2024 – настоящее время)"],p:["Producing, game design and project development.","Продюсирование, гейм-дизайн и разработка игр."],b:["proj","#/port"]},
  {t:["Siberian Game Jam – Dreamtide","Siberian Game Jam – Dreamtide"],m:["Team participation (2025)","Командное участие (2025)"],l:[["Level design.","Sound design."],["Левел дизайн.","Саунд дизайн."]],b:["game","#/game/dreamtide"]},
  {t:["Game Future Conference","Game Future Conference"],m:["Speaker (2025)","Спикер доклада (2025)"],p:["Wrote and presented a talk: “How much freedom can you give the player in adventure games, and how to implement it?”","Написание и презентация доклада: «Какую свободу можно предоставить игроку в адвенчур играх и как это реализовать?»"],b:["talk","#"]},
  {t:["MyIndie – Chakram","MyIndie – Chakram"],m:["Team participation (2026)","Командное участие (2026)"],l:[["Producing.","Technical specification for departments.","Development in Unreal Engine 5.","Sound design."],["Продюсирование.","Техническое задание для отделов.","Разработка в Unreal Engine 5.","Саунд дизайн."]],b:["game","#/game/chakram"]},
@@ -172,18 +1094,52 @@ const EXP=[ // title, meta, text/list, button(optional: [label-key, href])
  {t:["Play26","Играй26"],m:["Volunteer at the conference (2026)","Волонтёрство на конференции (2026)"],p:["Checked in attendees and handed out merch, moderated the talks hall (streamed on VK), helped with organizational tasks.","Следила за входящими участниками и выдавала мерч, модерировала зал с докладами (велась трансляция в ВК). Помогала в организационных моментах."]},
  {t:["GMTK Game Jam – One Last Card","GMTK Game Jam – One Last Card"],m:["Team participation (2026)","Командное участие (2026)"],l:[["Team lead.","Producer.","Programmer."],["Тимлид.","Продюсер.","Программист."]],b:["game","#/game/onelastcard"]}
 ];
-/* Games. imgs: put image URLs or data: URIs in the array to replace the placeholder slides. */
+/* =====================================================================
+   5. ИГРЫ. Каждая игра = своя страница, она создаётся САМА из этого списка.
+   ЧТО ДЕЛАТЬ ДЛЯ НОВОЙ ИГРЫ:
+     1) скопируй любой блок ниже и поменяй id (латиницей, без пробелов): адрес будет #/game/ID
+     2) заполни поля (шаблон [Add text here] замени на свой текст):
+        n — название, y — год, c — запасной цвет плитки,
+        role — моя роль, eng — движок / командный или сольный проект,
+        genre — жанр, pitch — питч, did — чем занималась (список),
+        solved — пример решённой задачи, itch — ссылка на itch.io,
+        imgs — картинки для листалки на странице игры: ["images/a.jpg","images/b.jpg"],
+        cover — картинка для плитки в портфолио (см. блок SHAPES ниже)
+     3) чтобы игра появилась в таймлайне, добавь в EXP блок с b:["game","#/game/ТВОЙ_ID"]
+     4) в портфолио плиток 6 (форма каждой в SHAPES): игра №N попадает в плитку №N
+   ===================================================================== */
 const TBD=["[Add text here]","[Добавьте текст]"];
 const GAMES=[
- {id:"dreamtide",c:"#a8201a",y:"2025",n:"Dreamtide",role:["Level designer, sound designer","Левел-дизайнер, саунд-дизайнер"],eng:["Siberian Game Jam · team project","Siberian Game Jam · командный проект"],genre:TBD,pitch:TBD,did:[["Level design","Sound design"],["Левел дизайн","Саунд дизайн"]],solved:TBD,itch:"#",imgs:[]},
- {id:"chakram",c:"#7a1511",y:"2026",n:"Chakram",role:["Producer, technical designer, sound designer","Продюсер, технический дизайнер, саунд-дизайнер"],eng:["Unreal Engine 5 · MyIndie · team project","Unreal Engine 5 · MyIndie · командный проект"],genre:TBD,pitch:TBD,did:[["Producing","Technical specifications for departments","Development in Unreal Engine 5","Sound design"],["Продюсирование","Технические задания для отделов","Разработка в Unreal Engine 5","Саунд дизайн"]],solved:TBD,itch:"#",imgs:[]},
- {id:"seabed",c:"#5b3a2e",y:"2026",n:"Seabed",role:["Game designer","Гейм-дизайнер"],eng:["Tabletop game · Granicon · pair project","Настольная игра · Граникон · проект в паре"],genre:TBD,pitch:TBD,did:[["Game design, some components","Cards, fish chips","Rulebook layout and player reference","Playtests and feedback analysis"],["Гейм-дизайн, некоторые компоненты","Дизайн карточек и фишек рыбок","Верстка рулбука и памятки игроков","Плейтесты и анализ фидбека"]],solved:TBD,itch:"#",imgs:[]},
- {id:"onelastcard",c:"#8d2a1e",y:"2026",n:"One Last Card",role:["Team lead, producer, programmer","Тимлид, продюсер, программист"],eng:["GMTK Game Jam · team project","GMTK Game Jam · командный проект"],genre:TBD,pitch:TBD,did:[["Team lead","Producer","Programmer"],["Тимлид","Продюсер","Программист"]],solved:TBD,itch:"#",imgs:[]},
- {id:"redcarpet",c:"#c4584a",y:"2021",n:"Red Carpet Cottage",role:["Game designer, programmer","Гейм-дизайнер, программист"],eng:["Unity · solo project","Unity · сольный проект"],genre:["Puzzle game · Cozy house","Головоломка · Уютный дом"],pitch:["A cozy puzzle game where the player rolls out a red carpet through a house to bring it to the exit. You can move the house's furniture and teleport the carpet to a lost place, a 2D dimension reachable by rolling the carpet out under the furniture.","Уютная головоломка, где игрок раскатывает красный ковёр по дому, чтобы довести его до выхода. Можно двигать мебель и телепортировать ковёр в потерянное место — 2D-измерение, доступное, если раскатать ковёр под мебелью."],did:[["Game design","Programming in Unity","Isometric house and 2D dimension setup"],["Гейм-дизайн","Программирование в Unity","Изометрический дом и 2D-измерение"]],solved:TBD,itch:"#",imgs:[]}
+ {id:"dreamtide",c:"#a8201a",y:"2025",n:"Dreamtide",role:["Level designer, sound designer","Левел-дизайнер, саунд-дизайнер"],eng:["Siberian Game Jam · team project","Siberian Game Jam · командный проект"],genre:TBD,pitch:TBD,did:[["Level design","Sound design"],["Левел дизайн","Саунд дизайн"]],solved:TBD,itch:"#",imgs:[],cover:""},
+ {id:"chakram",c:"#7a1511",y:"2026",n:"Chakram",role:["Producer, technical designer, sound designer","Продюсер, технический дизайнер, саунд-дизайнер"],eng:["Unreal Engine 5 · MyIndie · team project","Unreal Engine 5 · MyIndie · командный проект"],genre:TBD,pitch:TBD,did:[["Producing","Technical specifications for departments","Development in Unreal Engine 5","Sound design"],["Продюсирование","Технические задания для отделов","Разработка в Unreal Engine 5","Саунд дизайн"]],solved:TBD,itch:"#",imgs:[],cover:""},
+ {id:"seabed",c:"#5b3a2e",y:"2026",n:"Seabed",role:["Game designer","Гейм-дизайнер"],eng:["Tabletop game · Granicon · pair project","Настольная игра · Граникон · проект в паре"],genre:TBD,pitch:TBD,did:[["Game design, some components","Cards, fish chips","Rulebook layout and player reference","Playtests and feedback analysis"],["Гейм-дизайн, некоторые компоненты","Дизайн карточек и фишек рыбок","Верстка рулбука и памятки игроков","Плейтесты и анализ фидбека"]],solved:TBD,itch:"#",imgs:[],cover:""},
+ {id:"onelastcard",c:"#8d2a1e",y:"2026",n:"One Last Card",role:["Team lead, producer, programmer","Тимлид, продюсер, программист"],eng:["GMTK Game Jam · team project","GMTK Game Jam · командный проект"],genre:TBD,pitch:TBD,did:[["Team lead","Producer","Programmer"],["Тимлид","Продюсер","Программист"]],solved:TBD,itch:"#",imgs:[],cover:""},
+ {id:"redcarpet",c:"#c4584a",y:"2021",n:"Red Carpet Cottage",role:["Game designer, programmer","Гейм-дизайнер, программист"],eng:["Unity · solo project","Unity · сольный проект"],genre:["Puzzle game · Cozy house","Головоломка · Уютный дом"],pitch:["A cozy puzzle game where the player rolls out a red carpet through a house to bring it to the exit. You can move the house's furniture and teleport the carpet to a lost place, a 2D dimension reachable by rolling the carpet out under the furniture.","Уютная головоломка, где игрок раскатывает красный ковёр по дому, чтобы довести его до выхода. Можно двигать мебель и телепортировать ковёр в потерянное место — 2D-измерение, доступное, если раскатать ковёр под мебелью."],did:[["Game design","Programming in Unity","Isometric house and 2D dimension setup"],["Гейм-дизайн","Программирование в Unity","Изометрический дом и 2D-измерение"]],solved:TBD,itch:"#",imgs:[],cover:""}
 ];
+/* =====================================================================
+   6. ССЫЛКИ контактов
+   ===================================================================== */
 const LINKS={mail:"mailto:deliventgd@gmail.com",li:"https://www.linkedin.com/in/delivent",tg:"https://t.me/deliivent",ch:"https://t.me/deliventGD",st:"https://hsedesign.ru/account/delivent"};
 
-/* ===== engine ===== */
+/* =====================================================================
+   7. ПЛИТКИ ПОРТФОЛИО (формы по шаблону).
+   Координаты — на полотне 1267 x 567. x,y,w,h — рамка плитки; pts — углы фигуры;
+   cap — где стоит подпись. Квадратная картинка из game.cover сама обрежется под фигуру.
+   Хочешь сдвинуть угол — поменяй числа в pts.
+   ===================================================================== */
+const SHAPES=[
+ {x:0,  y:0,  w:370,h:363,cap:[185,181], pts:[[0,0],[370,0],[370,363],[0,363]]},
+ {x:410,y:0,  w:413,h:363,cap:[560,180], pts:[[410,0],[823,0],[823,137],[748,267],[748,363],[410,363]]},
+ {x:788,y:0,  w:479,h:363,cap:[1040,185],pts:[[863,0],[1267,0],[1267,363],[788,363],[788,267],[863,137]]},
+ {x:0,  y:392,w:565,h:175,cap:[200,480], pts:[[0,392],[368,392],[368,454],[565,567],[0,567]]},
+ {x:408,y:392,w:432,h:175,cap:[600,480], pts:[[408,392],[685,392],[840,477],[840,567],[605,567],[408,454]]},
+ {x:725,y:392,w:542,h:175,cap:[1050,490],pts:[[725,392],[1267,392],[1267,567],[880,567],[880,477]]}
+];
+
+/* =====================================================================
+   8. ДВИЖОК: рисует секции страницы. Ниже — по функции на каждую секцию
+   ===================================================================== */
+let ANIM=true; // true = цифры «выезжают» (при смене языка выключается)
 let lang="en";try{lang=localStorage.getItem("lang")||(navigator.language||"").startsWith("ru")?"ru":"en";const s=localStorage.getItem("lang");if(s)lang=s}catch(e){}
 const L=o=>o[lang==="ru"?1:0];const $=s=>document.querySelector(s);
 const esc=s=>String(s)
@@ -194,25 +1150,52 @@ function nav(){$("#logo").innerHTML="Anna Kalmykova<small>"+esc(L(UI.job).toLowe
 const ICON={mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',li:'in',tg:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3L3 10.5l5.5 2L18 6l-7 7.5V19l3-3.5 4 3z"/></svg>'};
 function rows(){return [["mail",L(UI.mail),"deliventgd@gmail.com",LINKS.mail],["li","LinkedIn","in/delivent",LINKS.li],["tg","Telegram","t.me/deliivent",LINKS.tg]].map(r=>`<a class="crow" href="${r[3]}"><span class="ic">${ICON[r[0]]}</span><b>${esc(r[1])}</b><span style="font-size:17px;font-weight:400;color:inherit">${esc(r[2])}</span><span>↗</span></a>`).join("")}
 function more(){const ar='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M13 8l4 4-4 4"/></svg>';return `<p style="margin-top:40px">${esc(L(UI.more))}</p><div class="more"><a href="${LINKS.ch}">${ar}<b>${esc(L(UI.chan))}</b><small>t.me/deliventGD</small></a><a href="${LINKS.st}">${ar}<b>${esc(L(UI.stud))}</b><small>HSE/delivent</small></a></div>`}
-function home(){
+/* ---- Секция: ОБО МНЕ (красный первый экран) ---- */
+function heroHTML(){
  return `<section class="hero" id="about"><div class="wrap">
- <div class="stats">${UI.stats.map(x=>`<div><b>${x[2]}</b><span>${esc(L(x))}</span></div>`).join("")}</div>
- <div><div class="kick">${esc(L(UI.kick))}</div><h1>delivent</h1><div class="by">Anna Kalmykova <span class="hl"><button data-l="en">EN</button><button data-l="ru">RU</button></span></div>
+ <div class="stats${ANIM?" anim":""}">${UI.stats.map(x=>`<div><b>+${x[2]}</b><span>${esc(L(x))}</span></div>`).join("")}</div>
+ <div><div class="kick" aria-label="${esc(L(UI.kick))}"><div class="mq" aria-hidden="true"><div class="mq-t">${`<span>${esc(L(UI.kick))} •</span>`.repeat(4)}</div></div></div><h1>delivent</h1><div class="by">Anna Kalmykova <span class="hl"><button data-l="en">EN</button><button data-l="ru">RU</button></span></div>
  ${L(UI.about).map(p=>`<p>${esc(p)}</p>`).join("")}
  <div class="btns"><a class="btn" href="#/contacts">${esc(L(UI.cta))}</a></div></div>
- <div class="side"><div class="photo">${esc(L(UI.photo))}</div><div class="btns"><a class="btn" href="#">${esc(L(UI.cvEn))}</a><a class="btn" href="#">${esc(L(UI.cvRu))}</a></div></div></div></section>
- <div class="wrap">
- <section class="s" id="exp"><h2>${esc(L(UI.h.exp))}</h2><div class="tl">${EXP.map(e=>`<div class="ev"><h3>${esc(L(e.t))}</h3><div class="meta">${esc(L(e.m))}</div>${e.p?`<p>${esc(L(e.p))}</p>`:""}${e.l?ul(L(e.l)):""}${e.b?`<a class="btn" href="${e.b[1]}">${esc(L(UI[e.b[0]]))}</a>`:""}</div>`).join("")}</div></section>
- <section class="s" id="port"><h2>${esc(L(UI.h.port))}</h2><div class="grid">${[0,1,2,3,4,5].map(i=>{const g=GAMES[i];return g?`<a class="tile t${i+1}" href="#/game/${g.id}"><div class="sh" style="background-color:${g.c}${g.cover?`;background-image:url(${g.cover})`:""}"><b>${esc(g.n)}</b><small>${g.y}</small></div></a>`:`<div class="tile soon t${i+1}"><div class="sh"><b>${esc(L(UI.soon))}</b></div></div>`}).join("")}</div></section>
- <section class="s" id="skills"><h2>${esc(L(UI.h.skills))}</h2><div class="sk">${UI.skillsT.map((t,i)=>`<div><h3>${esc(L(t))}</h3>${ul(L(UI.skillsL[i]))}</div>`).join("")}</div></section>
- <section class="s"><h2>${esc(L(UI.h.edu))}</h2><div class="edcar" id="edcar"><div class="edu on"><span class="gpa">GPA ${esc(UI.edu.gpa)}</span><div><div class="y">${esc(L(UI.edu.y))}</div><div>${esc(L(UI.edu.d))}</div><h3>${esc(L(UI.edu.t))}</h3><div>${esc(L(UI.edu.s))}</div></div><div class="sq">HSE</div></div><div class="edu soon"><div class="sq">${esc(L(UI.soon))}</div></div><div class="ednav"><button aria-label="Previous">‹</button><i></i><i></i><button aria-label="Next">›</button></div></div></section>
- <section class="s" id="contacts"><h2>${esc(L(UI.h.contacts))}</h2><p style="text-align:center;margin-top:-18px">${esc(L(UI.always))}</p>${rows()}${more()}</section>
- </div>`}
-function contacts(){
- return `<div class="wrap"><a class="back" href="#/">${esc(L(UI.back).replace(/.*?(?= )/,"←").replace(/^← .*/,L(UI.back)))}</a>
- <section class="s" style="padding-top:30px"><h2>${esc(L(UI.h.contacts))}</h2><p style="margin-top:-20px">${esc(L(UI.always))}</p>
- ${rows()}
- ${more()}</section></div>`}
+ <div class="side"><div class="photo">${PHOTO?`<img src="${PHOTO}" alt="Anna Kalmykova">`:esc(L(UI.photo))}</div><div class="btns"><a class="btn" href="#">${esc(L(UI.cvEn))}</a><a class="btn" href="#">${esc(L(UI.cvRu))}</a></div></div></div></section>`}
+
+/* ---- Секция: ОПЫТ (таймлайн из массива EXP) ---- */
+function expHTML(){
+ return `<section class="s" id="exp"><h2>${esc(L(UI.h.exp))}</h2><div class="tl">${EXP.map(e=>`<div class="ev"><h3>${esc(L(e.t))}</h3><div class="meta">${esc(L(e.m))}</div>${e.p?`<p>${esc(L(e.p))}</p>`:""}${e.l?ul(L(e.l)):""}${e.b?`<a class="btn" href="${e.b[1]}">${esc(L(UI[e.b[0]]))}</a>`:""}</div>`).join("")}</div></section>`}
+
+/* ---- Секция: ПОРТФОЛИО (плитки-фигуры из SHAPES + картинки cover из GAMES) ---- */
+function portHTML(){
+ return `<section class="s" id="port"><h2>${esc(L(UI.h.port))}</h2><div class="grid">${SHAPES.map((sh,i)=>{
+  const g=GAMES[i],pts=sh.pts.map(p=>(p[0]-sh.x)+","+(p[1]-sh.y)).join(" "),tag=g?"a":"div",cov=g&&g.cover;
+  return `<${tag} class="tile${g?"":" soon"}"${g?` href="#/game/${g.id}"`:""} style="--l:${sh.x/12.67}%;--t:${sh.y/5.67}%;--w:${sh.w/12.67}%;--cx:${(sh.cap[0]-sh.x)/sh.w*100}%;--cy:${(sh.cap[1]-sh.y)/sh.h*100}%;aspect-ratio:${sh.w}/${sh.h}">
+   <svg viewBox="0 0 ${sh.w} ${sh.h}" aria-hidden="true">
+    <defs><clipPath id="cp${i}"><polygon points="${pts}"/></clipPath></defs>
+    <polygon points="${pts}" fill="${g?g.c:"var(--sand)"}"/>
+    ${cov?`<image href="${cov}" width="${sh.w}" height="${sh.h}" preserveAspectRatio="xMidYMid slice" clip-path="url(#cp${i})"/>`:""}
+    <polygon points="${pts}" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linejoin="miter" stroke-miterlimit="10" vector-effect="non-scaling-stroke"/>
+   </svg>
+   <span class="cap${cov?" hov":""}"><b>${esc(g?g.n:L(UI.soon))}</b>${g?`<small>${g.y}</small>`:""}</span>
+  </${tag}>`}).join("")}</div></section>`}
+
+/* ---- Секция: НАВЫКИ (список с подсказками из SKILL_INFO) ---- */
+function skillUl(i){return "<ul>"+L(UI.skillsL[i]).map((name,j)=>{const inf=SKILL_INFO[UI.skillsL[i][0][j]];
+ return `<li${inf&&inf.d?' tabindex="0"':""}>${esc(name)}${inf&&inf.file?` <a class="cert" href="${inf.file}" target="_blank" rel="noopener">${esc(L(UI.cert))}</a>`:""}${inf&&inf.d?`<span class="tip"><b>${esc(name)}</b>${esc(L(inf.d))}</span>`:""}</li>`}).join("")+"</ul>"}
+function skillsHTML(){
+ return `<section class="s" id="skills"><h2>${esc(L(UI.h.skills))}</h2><div class="sk">${UI.skillsT.map((t,i)=>`<div><h3>${esc(L(t))}</h3>${skillUl(i)}</div>`).join("")}</div></section>`}
+
+/* ---- Секция: ОБРАЗОВАНИЕ (слайдер; сейчас карточка + «скоро будет») ---- */
+function eduHTML(){
+ return `<section class="s"><h2>${esc(L(UI.h.edu))}</h2><div class="edcar" id="edcar"><div class="edu on"><span class="gpa">GPA ${esc(UI.edu.gpa)}</span><div><div class="y">${esc(L(UI.edu.y))}</div><div>${esc(L(UI.edu.d))}</div><h3>${esc(L(UI.edu.t))}</h3><div>${esc(L(UI.edu.s))}</div></div><a class="sq" href="${FILES.recordBook}" target="_blank" rel="noopener">${esc(L(UI.record))}</a></div><div class="edu soon"><div class="sq">${esc(L(UI.soon))}</div></div><div class="ednav"><button aria-label="Previous">‹</button><i></i><i></i><button aria-label="Next">›</button></div></div></section>`}
+
+/* ---- Секция: КОНТАКТЫ (внизу главной; кнопка «Контакты» в меню скроллит сюда) ---- */
+function contactsHTML(){
+ return `<section class="s" id="contacts"><h2>${esc(L(UI.h.contacts))}</h2><p style="text-align:center;margin-top:-18px">${esc(L(UI.always))}</p>${rows()}${more()}</section>`}
+
+/* ---- Главная страница = все секции подряд ---- */
+function home(){
+ return heroHTML()+`<div class="wrap">${expHTML()}${portHTML()}${skillsHTML()}${eduHTML()}${contactsHTML()}</div>`}
+
+/* ---- Страница отдельной игры (одна функция для ВСЕХ игр, данные из GAMES) ---- */
 let si=0;
 function game(id){
  const g=GAMES.find(x=>x.id===id);if(!g)return home();
@@ -229,15 +1212,24 @@ function carousel(){const c=$("#car");if(!c)return;const s=[...c.querySelectorAl
  const show=i=>{si=(i+s.length)%s.length;s.forEach((e,k)=>e.classList.toggle("on",k===si));c.querySelector(".ct").textContent=(si+1)+" / "+s.length};
  c.querySelector(".p").onclick=()=>show(si-1);c.querySelector(".n").onclick=()=>show(si+1);show(0)}
 function edcar(){const c=$("#edcar");if(!c)return;const sl=[...c.querySelectorAll(".edu")],dots=[...c.querySelectorAll("i")],bt=c.querySelectorAll(".ednav button");let k=0;const sh=i=>{k=(i+sl.length)%sl.length;sl.forEach((e,j)=>e.classList.toggle("on",j===k));dots.forEach((e,j)=>e.classList.toggle("on",j===k))};bt[0].onclick=()=>sh(k-1);bt[1].onclick=()=>sh(k+1);sh(0)}
-function render(){
- document.documentElement.lang=lang;nav();
+/* =====================================================================
+   9. ОТРИСОВКА И СОБЫТИЯ
+   isLang = true, когда меняем язык: тогда прокрутка и анимация цифр не трогаются,
+   поэтому вёрстка не прыгает
+   ===================================================================== */
+let VIEW="";
+function render(isLang){
+ document.documentElement.lang=lang;nav();ANIM=!isLang;
  document.querySelectorAll("[data-l]").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
- const h=location.hash||"#/";let html;
- if(h.startsWith("#/game/"))html=game(h.slice(7));else if(h==="#/contacts")html=contacts();else html=home();
- $("#app").innerHTML=html;carousel();edcar();
- const t=!h.startsWith("#/game/")&&h!=="#/contacts"&&h.length>2?h.slice(2):null;
- if(t&&document.getElementById(t))document.getElementById(t).scrollIntoView();else window.scrollTo(0,0)}
-document.addEventListener("click",e=>{const b=e.target.closest("[data-l]");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("lang",lang)}catch(x){}const y=scrollY;render();scrollTo(0,y)});
-addEventListener("hashchange",render);render();
+ const id=(location.hash||"#/").replace(/^#\/?/,""),isGame=id.startsWith("game/");
+ $("#app").innerHTML=isGame?game(id.slice(5)):home();carousel();edcar();VIEW=isGame?"game":"home";
+ if(isLang)return;
+ const t=!isGame&&id?document.getElementById(id):null;
+ if(t)t.scrollIntoView();else window.scrollTo(0,0)}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-l]");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("lang",lang)}catch(x){}render(true)});
+// клик по меню на главной: просто едем вниз к секции (Контакты тоже), без перерисовки
+addEventListener("hashchange",()=>{const id=(location.hash||"#/").replace(/^#\/?/,""),t=id&&!id.startsWith("game/")?document.getElementById(id):null;
+ if(VIEW==="home"&&t){t.scrollIntoView();return}render(false)});
+render(false);
 </script>
 </body></html>
