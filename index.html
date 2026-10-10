@@ -492,6 +492,24 @@ section.s {
 }
 
 
+/* Первые три записи «закреплены»: пунктирная рамка и пин в углу (вне основной ленты по времени) */
+.ev:nth-child(-n+3)::after {
+  content:"";
+  position:absolute;
+  inset:-10px -8px -10px 34px;
+  border:2px dashed var(--ink);
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 3h6l-1 6 3 3v2h-4v6l-1 1-1-1v-6H7v-2l3-3z' fill='%23a8201a' stroke='%232b1a16' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 8px top 6px/24px;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .6s ease;
+}
+.ev.in:nth-child(-n+3)::after { opacity:1; }
+@media(min-width:860px) {
+  .ev:nth-child(-n+3)::after { inset:-10px 30px -10px -12px; }
+  .ev:nth-child(-n+3):nth-child(even)::after { inset:-10px -12px -10px 30px; }
+}
+
+
 /* ===== 7. ПОРТФОЛИО: плитки-фигуры (формы задаются в JS, массив SHAPES) ===== */
 .grid {
   position:relative;
@@ -876,6 +894,13 @@ a.tile:hover .cap.hov,a.tile:focus-visible .cap.hov {
 
 .more small {
   grid-column:2;
+}
+
+
+.blk h3.dh {
+  font-size:20px;
+  color:var(--red);
+  margin:20px 0 4px;
 }
 
 
@@ -1269,6 +1294,13 @@ function contactsHTML(){
 function home(){
  return heroHTML()+`<div class="wrap">${expHTML()}${portHTML()}${skillsHTML()}${eduHTML()}${contactsHTML()}</div>`}
 
+/* ---- «Чем я занималась»: поддерживает ДВА формата поля did ----
+   1) простой список:  did:[["Item EN","Item EN 2"],["Пункт RU","Пункт RU 2"]]
+   2) группы с подзаголовками:  did:[{h:["Heading EN","Заголовок RU"], l:[["Item EN"],["Пункт RU"]]}, {...}]  */
+function didHTML(d){
+ if(Array.isArray(d[0]))return ul(L(d));
+ return d.map(x=>`<h3 class="dh">${esc(L(x.h))}</h3>${ul(L(x.l))}`).join("")}
+
 /* ---- Страница отдельной игры (одна функция для ВСЕХ игр, данные из GAMES) ---- */
 let si=0;
 function game(id){
@@ -1280,7 +1312,7 @@ function game(id){
  <dl><dt>${esc(L(UI.f.engine))}</dt><dd>${esc(L(g.eng))}</dd><dt>${esc(L(UI.f.theme))}</dt><dd>${esc(L(g.genre))}</dd><dt>${esc(L(UI.f.pitch))}</dt><dd>${esc(L(g.pitch))}</dd></dl>
  <div class="btns"><a class="btn red" href="${g.itch}">${esc(L(UI.itch))}</a></div></div>
  <div class="car" id="car">${slides.join("")}<button class="nv p" aria-label="Previous">‹</button><button class="nv n" aria-label="Next">›</button><span class="ct"></span></div></div>
- <div class="blk"><h2>${esc(L(UI.did))}</h2>${ul(L(g.did))}</div>
+ <div class="blk"><h2>${esc(L(UI.did))}</h2>${didHTML(g.did)}</div>
  <div class="blk"><h2>${esc(L(UI.solved))}</h2><div class="ex">${esc(L(g.solved))}</div></div></div>`}
 function carousel(){const c=$("#car");if(!c)return;const s=[...c.querySelectorAll(".sl")];
  const show=i=>{si=(i+s.length)%s.length;s.forEach((e,k)=>e.classList.toggle("on",k===si));c.querySelector(".ct").textContent=(si+1)+" / "+s.length};
