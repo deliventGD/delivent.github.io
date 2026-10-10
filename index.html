@@ -1069,7 +1069,7 @@ const UI={
         ["Специализируюсь на геймплее, продюсировании и системах. Мне нравится выполнять в игровом движке технически сложную, кропотливую работу, требующую высокой точности.","Веду документацию, собираю и анализирую данные, а также составляю технические задания для всех отделов."]],
  soon:["Coming soon","Скоро будет"],
  // Цифры слева в «Обо мне»: [EN, RU, число]. Плюс перед числом ставится сам
- stats:[["Concepts","Концептов",0],["Builds","Билдов",5],["Game jams","Гейм джемов",2]],kick:["Game designer • portfolio","Гейм дизайнер • портфолио"],cta:["Get in touch","Свяжитесь со мной"],cvEn:["Resume (EN)","Резюме (EN)"],cvRu:["Resume (RU)","Резюме (RU)"],
+ stats:[["Concepts","Концептов",8],["Builds","Билдов",7],["Game jams","Гейм джемов",4]],kick:["Game designer • portfolio","Гейм дизайнер • портфолио"],cta:["Get in touch","Свяжитесь со мной"],cvEn:["Resume (EN)","Резюме (EN)"],cvRu:["Resume (RU)","Резюме (RU)"],
  photo:["Your photo here","Здесь будет ваше фото"],
  h:{exp:["Experience","Опыт"],port:["Portfolio","Портфолио"],skills:["Skills","Навыки"],edu:["Education","Образование"],contacts:["Contacts","Контакты"]},
  back:["← Back to portfolio","← Назад к портфолио"],
@@ -1150,8 +1150,24 @@ const EXP=[
    ===================================================================== */
 const TBD=["[Add text here]","[Добавьте текст]"];
 const GAMES=[
- {id:"Lumen",c:"#a8201a",y:"2025",n:"Lumen",role:["Level designer, sound designer","Левел-дизайнер, саунд-дизайнер"],eng:["Siberian Game Jam · team project","Siberian Game Jam · командный проект"],genre:TBD,pitch:TBD,did:[["Level design","Sound design"],["Левел дизайн","Саунд дизайн"]],solved:TBD,itch:"#",imgs:[],cover:"FirstBlock.png"},
- {id:"Toadal Trepid",c:"#7a1511",y:"2026",n:"Toadal Trepid",role:["Producer, technical designer, sound designer","Продюсер, технический дизайнер, саунд-дизайнер"],eng:["Unreal Engine 5 · MyIndie · team project","Unreal Engine 5 · MyIndie · командный проект"],genre:TBD,pitch:TBD,did:[["Producing","Technical specifications for departments","Development in Unreal Engine 5","Sound design"],["Продюсирование","Технические задания для отделов","Разработка в Unreal Engine 5","Саунд дизайн"]],solved:TBD,itch:"#",imgs:[],cover:"SecondBlock.jpg"},
+ //LUMEN страничка
+{id:"Lumen",c:"#a8201a",y:"2026",n:"Lumen",role:["Team leader, producer, kanban master, lead programmer, technical artist, VFX artist","Руководитель команды, продюсер, канбан-мастер, ведущий программист, технический художник, VFX-художник"],eng:["Student project · team work","Студенческий проект · командная работа"],genre:["Puzzle","Головоломка"],pitch:["A first-person 3D puzzle where you are a former set photographer at a scene of a tragedy.","3D головоломка от первого лица, где вы — бывший фотограф съемочной площадки, на которой произошла трагедия."],did:[
+ {h:["Management","Менеджмент"],
+  l:[["Building the work pipeline, task tracker, content plan and reporting","Holding 10 calls","Distributing tasks according to capacity","Checking the work process","Analyzing teachers' feedback"],
+     ["Создание пайплайна работы, трекера задач, контент-плана и отчётности","Проведение 10 созвонов","Распределение задач по возможностям","Проверка процесса работы","Анализ фидбека преподавателей"]]},
+
+ {h:["Lead coder","Лид кодер"],
+  l:[["Character controls","Camera mechanics","All animations","Character health and death","Ghost AI","Interaction with ice, paper, glass and notes","Quest system","Importing and integrating UI and sounds","Fixing bugs and mechanics"],
+     ["Управление персонажем","Реализация механики камеры","Работа всех анимаций","Здоровье и смерть персонажа","ИИ призраков","Взаимодействие со льдом, бумагой, стеклом и записками","Система квестов","Импорт и работа UI и звуков","Исправление багов и механик"]]},
+
+ {h:["Other contributions","Другой вклад"],
+  l:[["Writing the content plan for the code department","All VFX","Candle jump scare with a cable short circuit","Dynamic material for the held-flash effect","Organizing the GitHub branch workflow","Helping with Level Streaming in the engine to optimize the project","Presentation plan and text","Longread plan and text"],
+     ["Написание контент-плана для отдела кода","Все VFX","Пугалка со свечками и замыканием кабеля","Динамический материал для зажатия вспышки","Организация работы в ветках GitHub","Помощь с работой Level Streaming в движке для оптимизации проекта","План и текст презентации","План и текст лонгрида"]]}
+],solved:TBD,itch:"https://delivent.itch.io/lumen",imgs:["Lumen1.gif"],cover:"FirstBlock.png"},
+ 
+
+
+{id:"Toadal Trepid",c:"#7a1511",y:"2026",n:"Toadal Trepid",role:["Producer, technical designer, sound designer","Продюсер, технический дизайнер, саунд-дизайнер"],eng:["Unreal Engine 5 · MyIndie · team project","Unreal Engine 5 · MyIndie · командный проект"],genre:TBD,pitch:TBD,did:[["Producing","Technical specifications for departments","Development in Unreal Engine 5","Sound design"],["Продюсирование","Технические задания для отделов","Разработка в Unreal Engine 5","Саунд дизайн"]],solved:TBD,itch:"#",imgs:[],cover:"SecondBlock.jpg"},
  {id:"Seabed",c:"#5b3a2e",y:"2026",n:"Seabed",role:["Game designer","Гейм-дизайнер"],eng:["Tabletop game · Granicon · pair project","Настольная игра · Граникон · проект в паре"],genre:TBD,pitch:TBD,did:[["Game design, some components","Cards, fish chips","Rulebook layout and player reference","Playtests and feedback analysis"],["Гейм-дизайн, некоторые компоненты","Дизайн карточек и фишек рыбок","Верстка рулбука и памятки игроков","Плейтесты и анализ фидбека"]],solved:TBD,itch:"#",imgs:[],cover:"ThirdBlock.jpg"},
  {id:"One Last Card",c:"#8d2a1e",y:"2026",n:"One Last Card",role:["Team lead, producer, programmer","Тимлид, продюсер, программист"],eng:["GMTK Game Jam · team project","GMTK Game Jam · командный проект"],genre:TBD,pitch:TBD,did:[["Team lead","Producer","Programmer"],["Тимлид","Продюсер","Программист"]],solved:TBD,itch:"#",imgs:[],cover:"FourthBlock.png"},
  {id:"redcarpet",c:"#c4584a",y:"2021",n:"Red Carpet Cottage",role:["Game designer, programmer","Гейм-дизайнер, программист"],eng:["Unity · solo project","Unity · сольный проект"],genre:["Puzzle game · Cozy house","Головоломка · Уютный дом"],pitch:["A cozy puzzle game where the player rolls out a red carpet through a house to bring it to the exit. You can move the house's furniture and teleport the carpet to a lost place, a 2D dimension reachable by rolling the carpet out under the furniture.","Уютная головоломка, где игрок раскатывает красный ковёр по дому, чтобы довести его до выхода. Можно двигать мебель и телепортировать ковёр в потерянное место — 2D-измерение, доступное, если раскатать ковёр под мебелью."],did:[["Game design","Programming in Unity","Isometric house and 2D dimension setup"],["Гейм-дизайн","Программирование в Unity","Изометрический дом и 2D-измерение"]],solved:TBD,itch:"#",imgs:[],cover:""}
@@ -1210,7 +1226,7 @@ function heroHTML(){
  <div><div class="kick" aria-label="${esc(L(UI.kick))}"><div class="mq" aria-hidden="true"><div class="mq-t">${`<span>${esc(L(UI.kick))} •</span>`.repeat(4)}</div></div></div><h1>delivent</h1><div class="by">Anna Kalmykova <span class="hl"><button data-l="en">EN</button><button data-l="ru">RU</button></span></div>
  ${L(UI.about).map(p=>`<p>${esc(p)}</p>`).join("")}
  <div class="btns"><a class="btn" href="#/contacts">${esc(L(UI.cta))}</a></div></div>
- <div class="side"><div class="photo">${PHOTO?`<img src="${PHOTO}" alt="Anna Kalmykova">`:esc(L(UI.photo))}</div><div class="btns"><a class="btn" href="#">${esc(L(UI.cvEn))}</a><a class="btn" href="#">${esc(L(UI.cvRu))}</a></div></div></div></section>`}
+ <div class="side"><div class="photo">${PHOTO?`<img src="${PHOTO}" alt="Anna Kalmykova">`:esc(L(UI.photo))}</div><div class="btns"><a class="btn" href="ResumeEn">${esc(L(UI.cvEn))}</a><a class="btn" href="#">${esc(L(UI.cvRu))}</a></div></div></div></section>`}
 
 /* ---- Секция: ОПЫТ (таймлайн из массива EXP) ---- */
 function expHTML(){
