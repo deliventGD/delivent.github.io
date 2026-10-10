@@ -2,6 +2,9 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Anna Kalmykova — Game Designer</title>
+<!-- ИКОНКА ВКЛАДКИ. Сейчас — встроенная красная «d». Чтобы поставить свою: положи favicon.png (512x512, квадрат)
+     рядом с index.html и замени href на "favicon.png" -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23a8201a'/%3E%3Ctext x='32' y='48' font-size='46' text-anchor='middle' fill='%23efe4cf' font-family='Georgia,serif' font-weight='bold'%3Ed%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;800&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 
@@ -468,11 +471,31 @@ section.s {
 }
 
 
+/* Текст таймлайна «вылетает» от линии, когда его долистали (класс .in ставит JS, функция revealTl) */
+.ev { --fx:-50px; }
+.ev>:not(.btn) {
+  opacity:0;
+  transform:translateX(var(--fx));
+  transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1);
+}
+.ev>.btn {
+  opacity:0;
+  transition:opacity .6s ease .2s,transform .12s,box-shadow .12s;
+}
+.ev.in>:not(.btn) { opacity:1; transform:none; }
+.ev.in>.btn { opacity:1; }
+.ev.in>:nth-child(2) { transition-delay:.08s; }
+.ev.in>:nth-child(3) { transition-delay:.16s; }
+@media(min-width:860px) {
+  .ev { --fx:60px; }                 /* левые записи вылетают справа (от линии) */
+  .ev:nth-child(even) { --fx:-60px; } /* правые — слева (тоже от линии) */
+}
+
+
 /* ===== 7. ПОРТФОЛИО: плитки-фигуры (формы задаются в JS, массив SHAPES) ===== */
 .grid {
   position:relative;
-  aspect-ratio:1267/567;
-  margin:0 6px;
+    margin:0 6px;
 }
 
 .tile {
@@ -539,20 +562,19 @@ a.tile:hover .cap.hov,a.tile:focus-visible .cap.hov {
   color:var(--deep);
 }
 
+.grid.m {
+  display:none;
+}
+
 @media(max-width:760px) {
-  .grid {
-    aspect-ratio:auto;
-    display:grid;
-    gap:16px;
+  .grid.d {
+    display:none;
   }
-  .tile {
-    position:relative;
-    left:auto;
-    top:auto;
-    width:100%;
+  .grid.m {
+    display:block;
   }
   .tile .cap {
-    max-width:80%;
+    max-width:70%;
   }
 }
 
@@ -1087,7 +1109,7 @@ const SKILL_INFO={
  "Teamwork and team lead":{d:["Led the team on a game jam as team lead and producer.","Руководила командой на джеме как тимлид и продюсер."]},
  "Public speaking":{d:["Speaker at Game Future Conference.","Выступала спикером на Game Future Conference."]},
  "Giving feedback":{d:["Feedback on students' concept documents.","Обратная связь по концепт-документам студентов."]},
- "English — add level":{file:FILES.englishCert} // только ссылка на сертификат, без подсказки
+ "English — B2":{file:FILES.englishCert} // ключ ДОЛЖЕН совпадать с английским названием в skillsL. Поменяла уровень — поменяй и тут
 };
 
 /* =====================================================================
@@ -1105,12 +1127,12 @@ const EXP=[
  {t:["Game Design","Гейм-дизайн"],m:["Bachelor's (2024 – present) · HSE University","Бакалавриат (2024 – настоящее время) · НИУ ВШЭ"],p:["Profile: game design (video game production).","Профиль: гейм-дизайн (продюсирование видеоигр)."]},
  {t:["Systems Game Design","Системный гейм-дизайн"],m:["Tutor assistant (2025 – 2026)","Ассистент преподавателя (2025 – 2026)"],l:[["Checking homework (concept documents).","Giving feedback: comments on the feature, additions, layout and structure of documents, writing quality.","Checking coursework: preparing ready-made concept papers for existing student game docs."],["Проверка домашних заданий (концепт документов).","Обратная связь: комментарии по поводу фичекита, дополнения материала, верстки, структуры документации и грамотности.","Проверка курсовых работ (готовые концепт документы для существующих игр студентов)."]]},
  {t:["Game Developer","Разработчик игр"],m:["Student projects (2024 – present)","Учебные проекты (2024 – настоящее время)"],p:["Producing, game design and project development.","Продюсирование, гейм-дизайн и разработка игр."],b:["proj","#/port"]},
- {t:["Siberian Game Jam – Dreamtide","Siberian Game Jam – Dreamtide"],m:["Team participation (2025)","Командное участие (2025)"],l:[["Level design.","Sound design."],["Левел дизайн.","Саунд дизайн."]],b:["game","#/game/dreamtide"]},
- {t:["Game Future Conference","Game Future Conference"],m:["Speaker (2025)","Спикер доклада (2025)"],p:["Wrote and presented a talk: “How much freedom can you give the player in adventure games, and how to implement it?”","Написание и презентация доклада: «Какую свободу можно предоставить игроку в адвенчур играх и как это реализовать?»"],b:["talk","#"]},
- {t:["MyIndie – Chakram","MyIndie – Chakram"],m:["Team participation (2026)","Командное участие (2026)"],l:[["Producing.","Technical specification for departments.","Development in Unreal Engine 5.","Sound design."],["Продюсирование.","Техническое задание для отделов.","Разработка в Unreal Engine 5.","Саунд дизайн."]],b:["game","#/game/chakram"]},
- {t:["Granicon – Seabed","Граникон – Seabed"],m:["Pair presentation at a tabletop designers' convention (2026)","Парное выступление на конвенте авторов настольных игр (2026)"],p:["Game design; built some components, designed cards, fish chips, rulebook and player reference. Also ran playtests and analysed playtesters' feedback.","Гейм-дизайн, реализация некоторых компонентов, дизайн карточек, фишек рыбок, верстка рулбука и памятки игроков. Также вела плейтесты и анализировала фидбек плейтестеров."],b:["game","#/game/seabed"]},
+ {t:["GMTK Game Jam – One Last Card","GMTK Game Jam – One Last Card"],m:["Team participation (2026)","Командное участие (2026)"],l:[["Team lead.","Producer.","Programmer."],["Тимлид.","Продюсер.","Программист."]],b:["game","#/game/One Last Card"]},
  {t:["Play26","Играй26"],m:["Volunteer at the conference (2026)","Волонтёрство на конференции (2026)"],p:["Checked in attendees and handed out merch, moderated the talks hall (streamed on VK), helped with organizational tasks.","Следила за входящими участниками и выдавала мерч, модерировала зал с докладами (велась трансляция в ВК). Помогала в организационных моментах."]},
- {t:["GMTK Game Jam – One Last Card","GMTK Game Jam – One Last Card"],m:["Team participation (2026)","Командное участие (2026)"],l:[["Team lead.","Producer.","Programmer."],["Тимлид.","Продюсер.","Программист."]],b:["game","#/game/onelastcard"]}
+ {t:["Granicon – Seabed","Граникон – Seabed"],m:["Pair presentation at a tabletop designers' convention (2026)","Парное выступление на конвенте авторов настольных игр (2026)"],p:["Game design; built some components, designed cards, fish chips, rulebook and player reference. Also ran playtests and analysed playtesters' feedback.","Гейм-дизайн, реализация некоторых компонентов, дизайн карточек, фишек рыбок, верстка рулбука и памятки игроков. Также вела плейтесты и анализировала фидбек плейтестеров."],b:["game","#/game/Seabed"]},
+ {t:["MyIndie – Chakram","MyIndie – Chakram"],m:["Team participation (2026)","Командное участие (2026)"],l:[["Producing.","Technical specification for departments.","Development in Unreal Engine 5.","Sound design."],["Продюсирование.","Техническое задание для отделов.","Разработка в Unreal Engine 5.","Саунд дизайн."]],b:["game","#/game/Toadal Trepid"]},
+ {t:["Game Future Conference","Game Future Conference"],m:["Speaker (2025)","Спикер доклада (2025)"],p:["Wrote and presented a talk: “How much freedom can you give the player in adventure games, and how to implement it?”","Написание и презентация доклада: «Какую свободу можно предоставить игроку в адвенчур играх и как это реализовать?»"],b:["talk","#"]},
+ {t:["Siberian Game Jam – Dreamtide","Siberian Game Jam – Dreamtide"],m:["Team participation (2025)","Командное участие (2025)"],l:[["Level design.","Sound design."],["Левел дизайн.","Саунд дизайн."]],b:["game","#/game/Lumen"]}
 ];
 /* =====================================================================
    5. ИГРЫ. Каждая игра = своя страница, она создаётся САМА из этого списка.
@@ -1149,10 +1171,23 @@ const SHAPES=[
  {x:0,  y:0,  w:370,h:363,cap:[185,181], pts:[[0,0],[370,0],[370,363],[0,363]]},
  {x:410,y:0,  w:413,h:363,cap:[560,180], pts:[[410,0],[823,0],[823,137],[748,267],[748,363],[410,363]]},
  {x:788,y:0,  w:479,h:363,cap:[1040,185],pts:[[863,0],[1267,0],[1267,363],[788,363],[788,267],[863,137]]},
- {x:0,  y:392,w:565,h:175,cap:[200,480], pts:[[0,392],[368,392],[368,454],[565,567],[0,567]]},
- {x:408,y:392,w:432,h:175,cap:[600,480], pts:[[408,392],[685,392],[840,477],[840,567],[605,567],[408,454]]},
- {x:725,y:392,w:542,h:175,cap:[1050,490],pts:[[725,392],[1267,392],[1267,567],[880,567],[880,477]]}
+ // нижний ряд: высота 215 (было 175). Хочешь выше/ниже — меняй 607 (низ) и h, а общую высоту 607 в portHTML
+ {x:0,  y:392,w:565,h:215,cap:[200,500], pts:[[0,392],[368,392],[368,454],[565,607],[0,607]]},
+ {x:408,y:392,w:432,h:215,cap:[600,505], pts:[[408,392],[685,392],[840,477],[840,607],[605,607],[408,454]]},
+ {x:725,y:392,w:542,h:215,cap:[1050,515],pts:[[725,392],[1267,392],[1267,607],[880,607],[880,477]]}
 ];
+// ТЕЛЕФОН: 6 полос друг под другом, стыки идут наискосок зигзагом и «соединяются» (зазор gp между ними).
+// P — высота полосы, sl — наклон стыка, gp — половина зазора, 30 — срез крайних углов.
+function mobShapes(){const W=360,P=190,gp=6,sl=22,n=6,H=n*P,out=[];
+ const yl=k=>(k+1)*P+(k%2?sl:-sl),yr=k=>(k+1)*P+(k%2?-sl:sl);
+ for(let k=0;k<n;k++){
+  const tl=k?yl(k-1)+gp:0,tr=k?yr(k-1)+gp:0,bl=k<n-1?yl(k)-gp:H,br=k<n-1?yr(k)-gp:H;
+  let pts=[[0,tl],[W,tr],[W,br],[0,bl]];
+  if(k==0)pts=[[0,30],[30,0],[W,0],[W,br],[0,bl]];
+  if(k==n-1)pts=[[0,tl],[W,tr],[W,H-30],[W-30,H],[0,H]];
+  const ys=pts.map(p=>p[1]),y=Math.min(...ys),h=Math.max(...ys)-y;
+  out.push({x:0,y,w:W,h,cap:[W/2,y+h/2],pts})}
+ return {W,H,out}}
 
 /* =====================================================================
    8. ДВИЖОК: рисует секции страницы. Ниже — по функции на каждую секцию
@@ -1182,18 +1217,23 @@ function expHTML(){
  return `<section class="s" id="exp"><h2>${esc(L(UI.h.exp))}</h2><div class="tl">${EXP.map(e=>`<div class="ev"><h3>${esc(L(e.t))}</h3><div class="meta">${esc(L(e.m))}</div>${e.p?`<p>${esc(L(e.p))}</p>`:""}${e.l?ul(L(e.l)):""}${e.b?`<a class="btn" href="${e.b[1]}">${esc(L(UI[e.b[0]]))}</a>`:""}</div>`).join("")}</div></section>`}
 
 /* ---- Секция: ПОРТФОЛИО (плитки-фигуры из SHAPES + картинки cover из GAMES) ---- */
-function portHTML(){
- return `<section class="s" id="port"><h2>${esc(L(UI.h.port))}</h2><div class="grid">${SHAPES.map((sh,i)=>{
-  const g=GAMES[i],pts=sh.pts.map(p=>(p[0]-sh.x)+","+(p[1]-sh.y)).join(" "),tag=g?"a":"div",cov=g&&g.cover;
-  return `<${tag} class="tile${g?"":" soon"}"${g?` href="#/game/${g.id}"`:""} style="--l:${sh.x/12.67}%;--t:${sh.y/5.67}%;--w:${sh.w/12.67}%;--cx:${(sh.cap[0]-sh.x)/sh.w*100}%;--cy:${(sh.cap[1]-sh.y)/sh.h*100}%;aspect-ratio:${sh.w}/${sh.h}">
+// рисует одну мозаику: sp — список фигур, W,H — размер полотна, cls — d (компьютер) или m (телефон)
+function gridHTML(sp,W,H,cls){
+ return `<div class="grid ${cls}" style="aspect-ratio:${W}/${H}">${sp.map((sh,i)=>{
+  const g=GAMES[i],pts=sh.pts.map(p=>(p[0]-sh.x)+","+(p[1]-sh.y)).join(" "),tag=g?"a":"div",cov=g&&g.cover,id=cls+i;
+  return `<${tag} class="tile${g?"":" soon"}"${g?` href="#/game/${g.id}"`:""} style="--l:${sh.x/(W/100)}%;--t:${sh.y/(H/100)}%;--w:${sh.w/(W/100)}%;--cx:${(sh.cap[0]-sh.x)/sh.w*100}%;--cy:${(sh.cap[1]-sh.y)/sh.h*100}%;aspect-ratio:${sh.w}/${sh.h}">
    <svg viewBox="0 0 ${sh.w} ${sh.h}" aria-hidden="true">
-    <defs><clipPath id="cp${i}"><polygon points="${pts}"/></clipPath></defs>
+    <defs><clipPath id="cp${id}"><polygon points="${pts}"/></clipPath></defs>
     <polygon points="${pts}" fill="${g?g.c:"var(--sand)"}"/>
-    ${cov?`<image href="${cov}" width="${sh.w}" height="${sh.h}" preserveAspectRatio="xMidYMid slice" clip-path="url(#cp${i})"/>`:""}
+    ${cov?`<image href="${cov}" width="${sh.w}" height="${sh.h}" preserveAspectRatio="xMidYMid slice" clip-path="url(#cp${id})"/>`:""}
     <polygon points="${pts}" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linejoin="miter" stroke-miterlimit="10" vector-effect="non-scaling-stroke"/>
    </svg>
    <span class="cap${cov?" hov":""}"><b>${esc(g?g.n:L(UI.soon))}</b>${g?`<small>${g.y}</small>`:""}</span>
-  </${tag}>`}).join("")}</div></section>`}
+  </${tag}>`}).join("")}</div>`}
+
+/* ---- Секция: ПОРТФОЛИО. Два варианта мозаики: .d для компьютера, .m для телефона (переключает CSS) ---- */
+function portHTML(){const m=mobShapes();
+ return `<section class="s" id="port"><h2>${esc(L(UI.h.port))}</h2>${gridHTML(SHAPES,1267,607,"d")}${gridHTML(m.out,m.W,m.H,"m")}</section>`}
 
 /* ---- Секция: НАВЫКИ (список с подсказками из SKILL_INFO) ---- */
 function skillUl(i){return "<ul>"+L(UI.skillsL[i]).map((name,j)=>{const inf=SKILL_INFO[UI.skillsL[i][0][j]];
@@ -1236,13 +1276,19 @@ function edcar(){const c=$("#edcar");if(!c)return;const sl=[...c.querySelectorAl
    поэтому вёрстка не прыгает
    ===================================================================== */
 let VIEW="";
+// показывает записи таймлайна по мере прокрутки; instant=true (смена языка) — сразу, без анимации
+function revealTl(instant){const els=document.querySelectorAll(".ev");
+ if(instant||!("IntersectionObserver" in window)){els.forEach(e=>e.classList.add("in"));return}
+ const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.15,rootMargin:"0px 0px -8% 0px"});
+ els.forEach(e=>io.observe(e))}
 // подгоняет бегущую строку: шаг = ширина одного текста, время = ширина/25 (25px/с, как у полоски)
 function fitMarquee(){document.querySelectorAll(".mq-t").forEach(t=>{const w=t.firstElementChild.getBoundingClientRect().width;if(w){t.style.setProperty("--w",w+"px");t.style.animationDuration=(w/25)+"s"}})}
+function hashId(){try{return decodeURIComponent((location.hash||"#/").replace(/^#\/?/,""))}catch(e){return ""}} // id из адреса (с пробелами тоже)
 function render(isLang){
  document.documentElement.lang=lang;nav();ANIM=!isLang;
  document.querySelectorAll("[data-l]").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
- const id=(location.hash||"#/").replace(/^#\/?/,""),isGame=id.startsWith("game/");
- $("#app").innerHTML=isGame?game(id.slice(5)):home();carousel();edcar();VIEW=isGame?"game":"home";fitMarquee();if(document.fonts)document.fonts.ready.then(fitMarquee);
+ const id=hashId(),isGame=id.startsWith("game/");
+ $("#app").innerHTML=isGame?game(id.slice(5)):home();carousel();edcar();VIEW=isGame?"game":"home";fitMarquee();revealTl(isLang);if(document.fonts)document.fonts.ready.then(fitMarquee);
  if(isLang)return;
  const t=!isGame&&id?document.getElementById(id):null;
  if(t)t.scrollIntoView();else window.scrollTo(0,0)}
@@ -1253,7 +1299,7 @@ document.addEventListener("click",e=>{const a=e.target.closest('a[href^="#/"]');
  const t=id?document.getElementById(id):null;
  if(t||!id){e.preventDefault();history.replaceState(null,"",a.getAttribute("href"));t?t.scrollIntoView():scrollTo({top:0})}});
 // клик по меню на главной: просто едем вниз к секции (Контакты тоже), без перерисовки
-addEventListener("hashchange",()=>{const id=(location.hash||"#/").replace(/^#\/?/,""),t=id&&!id.startsWith("game/")?document.getElementById(id):null;
+addEventListener("hashchange",()=>{const id=hashId(),t=id&&!id.startsWith("game/")?document.getElementById(id):null;
  if(VIEW==="home"&&t){t.scrollIntoView();return}render(false)});
 render(false);
 </script>
